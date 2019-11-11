@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "ng2-bs4-modal.module.js",
+  "sourceRoot": "",
+  "sources": ["src/app/core/components/ng2-bs4-modal/ng2-bs4-modal.module.ts"],
+  "names": [],
+  "mappings": ";;AAAA,0CAA6C;AAC7C,sCAAuC;AACvC,oDAA0D;AAC1D,0DAA+D;AAC/D,sDAA2D;AAC3D,0DAA+D;AAC/D,4CAAkD;;;;;gBAEjD,eAAQ,SAAC;oBACN,OAAO,EAAE;wBACL,qBAAY;qBACf;oBACD,YAAY,EAAE;wBACV,sBAAc;wBACd,mCAAoB;wBACpB,+BAAkB;wBAClB,mCAAoB;wBACpB,8BAAkB;qBACrB;oBACD,OAAO,EAAE;wBACL,sBAAc;wBACd,mCAAoB;wBACpB,+BAAkB;wBAClB,mCAAoB;wBACpB,8BAAkB;qBACrB;iBACJ;;sBA1BD;;AA2Ba,kCAAW"
+}

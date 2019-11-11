@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "modal-body.js",
+  "sourceRoot": "",
+  "sources": ["src/app/core/components/modal-body.ts"],
+  "names": [],
+  "mappings": ";;AAAA,sCAA0C;AAC1C,iCAAyC;;IAWrC,4BAAoB,KAAqB;QAArB,UAAK,GAAL,KAAK,CAAgB;KAAK;;gBATjD,gBAAS,SAAC;oBACP,QAAQ,EAAE,YAAY;oBACtB,QAAQ,EAAE,mGAIT;iBACJ;;;;gBATQ,sBAAc;;6BADvB;;AAWa,gDAAkB"
+}

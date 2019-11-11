@@ -1,0 +1,139 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Dados do Usuário</h4>
+                        <p class="card-category">Olá, preencha as informações.</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nome Completo" type="text" [(ngModel)]="model.nome"
+                                            required [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="CPF" type="text" [(ngModel)]="model.cpf"
+                                            #cpfInput="ngModel" [cpf]="model.cpf" mask="000.000.000-99" required
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                    <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)">
+                                        <div *ngIf="cpfInput?.errors?.cpf">CPF inválido.</div>
+                                        <div *ngIf="cpfInput?.errors?.required">CPF Obrigatório.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput type="text" name="email" id="email" [(ngModel)]="model.email"
+                                            placeholder="Email" required email #email="ngModel">
+                                    </mat-form-field>
+                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+                                        <div *ngIf="email.errors.required">Email é obrigatório.</div>
+                                        <div *ngIf="email.errors.email">Email inválido.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Telefone" type="text" mask="(00) 00000-0000"
+                                            required
+                                            [(ngModel)]="model.telefone" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="CEP" type="text" [(ngModel)]="model.cep" required
+                                            (keydown.tab)="pegarCep()" mask="00000-000"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Estado" type="text" [(ngModel)]="model.estado"
+                                            required
+                                            required
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Cidade" type="text" [(ngModel)]="model.cidade"
+                                            required
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Bairro" type="text" [(ngModel)]="model.bairro"
+                                            required
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Logradouro" type="text" required
+                                            [(ngModel)]="model.logradouro" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput required placeholder="Número" type="text"
+                                            [(ngModel)]="model.numero"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Complemento" type="text"
+                                            [(ngModel)]="model.complemento" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Sua empresa será na mesma cidade informada acima?
+                                    </label>
+                                    <div class="form-check form-check-radio">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio"
+                                                [(ngModel)]="model.empresaCidade" [ngModelOptions]="{standalone: true}"
+                                                value="S" checked>
+                                            SIM
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-radio">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio"
+                                                [(ngModel)]="model.empresaCidade" [ngModelOptions]="{standalone: true}"
+                                                value="N">
+                                            NÃO
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button mat-raised-button (click)="irParaEmpresa()"
+                                class="btn btn-primary pull-right">PROSSEGUIR</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

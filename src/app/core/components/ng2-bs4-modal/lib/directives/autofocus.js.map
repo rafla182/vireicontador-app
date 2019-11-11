@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "autofocus.js",
+  "sourceRoot": "",
+  "sources": ["src/app/core/components/ng2-bs4-modal/directives/autofocus.ts"],
+  "names": [],
+  "mappings": ";;AAAA,sCAAsD;AACtD,6CAAqD;;IAMjD,4BAAoB,EAAc,EAAU,KAAqB;QAAjE,iBAMC;QANmB,OAAE,GAAF,EAAE,CAAY;QAAU,UAAK,GAAL,KAAK,CAAgB;QAC7D,EAAE,CAAC,CAAC,KAAK,IAAI,IAAI,CAAC,CAAC,CAAC;YAChB,IAAI,CAAC,KAAK,CAAC,MAAM,CAAC,SAAS,CAAC;gBACxB,KAAI,CAAC,EAAE,CAAC,aAAa,CAAC,KAAK,EAAE,CAAC;aACjC,CAAC,CAAC;SACN;KACJ;;gBAVJ,gBAAS,SAAC;oBACP,QAAQ,EAAE,aAAa;iBAC1B;;;;gBALmB,iBAAU;gBACrB,sBAAc;;6BADvB;;AAMa,gDAAkB"
+}

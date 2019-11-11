@@ -1,0 +1,172 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Meio de Pagamento</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Rafaela, </h4>
+                                <h5>Esse é o resumo do seu plano, falta apenas escolher o melhor meio de pagamento:</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="profile">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <h4> Plano Contratado</h4>
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <div>
+                                                            <h4> Simples Serviço</h4>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Valor do Plano Básico:
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <div>R$0,00</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Adicional por Sócio:
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <div>R$0,00</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PAGAR AGORA (Antecipação):
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <div>R$99,90</div>
+                                                    </td>
+                                                </tr>
+                                                <!-- <tr>
+                                                    <td>
+                                                        Código de Desconto
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <mat-form-field class="example-full-width">
+                                                            <input matInput placeholder="Código de Desconto"
+                                                                type="text">
+                                                        </mat-form-field>
+                                                    </td>
+                                                </tr> -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    [(ngModel)]="termoAceito" checked>
+                                                                <span class="form-check-sign">
+                                                                    <span class="check"></span>
+                                                                </span>
+                                                            </label>
+                                                            <label class="texto-contrato">Eu li e aceito o CONTRATO DE
+                                                                PRESTAÇÃO DE SERVIÇO DO
+                                                                VIREICONTADOR e os TERMOS E
+                                                                CONDIÇÕES DE USO.</label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <div>&nbsp;</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-warning card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">credit_card</i>
+                                        </div>
+                                        <p class="card-category">APROVAÇÃO
+                                            INSTANTÂNEA</p>
+                                        <h3 class="card-title">CARTÃO DE
+                                            CRÉDITO
+                                        </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-description">
+                                            Pague e será aprovado de 1 a 2 dias utéis.
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="example-full-width">
+                                                    <input OnlyNumber="true" matInput placeholder="Nº Cartão"
+                                                        [(ngModel)]="model.cartaoCredito.numero" type="number">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="CVV" type="number"
+                                                        [(ngModel)]="model.cartaoCredito.cvv">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="Titular do Cartão" type="text"
+                                                        [(ngModel)]="model.cartaoCredito.titularCartao">
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput placeholder="MM/AA" mask="00/00" type="number"
+                                                        [(ngModel)]="model.cartaoCredito.vencimento">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="col-md-12 text-center">
+                                            <div (click)="pagarAgora()" class="btn btn-success btn-round">PAGAR
+                                                AGORA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-warning card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">view_week</i>
+                                        </div>
+                                        <p class="card-category">PAGUE E SERÁ APROVADO DE 1 A 2 DIAS UTÉIS</p>
+                                        <h3 class="card-title">BOLETO DE BANCÁRIO
+                                        </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-description">
+                                            Para visualizar o boleto que será gerado, clique no botão abaixo.
+                                        </p>
+                                        <br>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="col-md-12 text-center">
+                                            <div (click)="gerarBoleto()" class="btn btn-success btn-round">GERAR
+                                                BOLETO</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

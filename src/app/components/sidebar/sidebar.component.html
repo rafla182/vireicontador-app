@@ -1,0 +1,35 @@
+<div class="logo">
+    <a href="https://www.virecontador.com.br" class="simple-text">
+        <div class="logo-img">
+            <img src="/assets/img/virei_contador_logo.png" />
+        </div>
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li class="nav-item" [ngClass]="{'active': tela == 'usuario'}">
+            <a class="nav-link" (click)="trocarTelaProxima('usuario')">
+                <i class="material-icons">person</i>
+                <p>Dados Usuário</p>
+            </a>
+        </li>
+        <li class="nav-item" [ngClass]="{'active': tela == 'empresa'}">
+            <a class="nav-link" (click)="trocarTelaProxima('empresa')">
+                <i class="material-icons">home</i>
+                <p>Dados Empresa</p>
+            </a>
+        </li>
+        <li class="nav-item" [ngClass]="{'active': tela == 'plano'}">
+            <a class="nav-link" (click)="trocarTelaProxima('plano')">
+                <i class="material-icons">assignment</i>
+                <p>Escolha Plano</p>
+            </a>
+        </li>
+        <li class="nav-item" [ngClass]="{'active': tela == 'pagamento'}">
+            <a class="nav-link" (click)="trocarTelaProxima('pagamento')">
+                <i class="material-icons">attach_money</i>
+                <p>Pagamento</p>
+            </a>
+        </li>
+    </ul>
+</div>

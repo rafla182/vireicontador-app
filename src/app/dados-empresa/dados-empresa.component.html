@@ -1,0 +1,182 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Dados da Empresa</h4>
+                        <p class="card-category">Olá, preencha as informações.</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Atividade Principal</h4>
+                                            <p class="category">Selecione o CNAE da principal atividade da sua empresa
+                                            </p>
+                                        </div>
+                                        <div class="card-body">
+                                            <button class="btn btn-info"
+                                                (click)="openCnaePrimaria()">SELECIONAR</button>
+                                            <br>
+                                            <div *ngIf="model.atividadePrimaria.id">
+                                                <div class="card alert alert-success">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title"><strong>Atividade Selecionada</strong>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="col-md-12" *ngIf="model.atividadePrimaria.id">
+                                                            <h5>
+                                                                <strong>{{model.atividadePrimaria.codigo}}</strong> -
+                                                                {{model.atividadePrimaria.descricao}} -
+                                                                Alíquota {{model.atividadePrimaria.aliquota}}%</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Atividades Secundárias</h4>
+                                            <p class="category">Selecione o CNAE das outras atividades da sua empresa,
+                                                se houver.</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <button class="btn btn-info"
+                                                (click)="openCnaeSecundaria()">SELECIONAR</button>
+                                            <br>
+                                            <div *ngIf="model.atividadeSecundaria.id">
+                                                <div class="card alert alert-success">
+                                                    <div class="card-header">
+                                                        <h4 class="card-title"><strong>Atividade Selecionada</strong>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div *ngIf="model.atividadeSecundaria.id">
+                                                            <h5>
+                                                                <strong>{{model.atividadeSecundaria.codigo}}</strong> -
+                                                                {{model.atividadeSecundaria.descricao}} -
+                                                                Alíquota {{model.atividadeSecundaria.aliquota}}%</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <ng-select [items]="tipoSociedade" bindLabel="descricao" bindValue="id"
+                                        placeholder="Tipo de Sociedade"></ng-select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Descreva, resumidamente, com suas palavras quais atividades de
+                                            serviço ou
+                                            comércio serão oferecidas por sua empresa."></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button mat-raised-button (click)="irParaEmpresa()"
+                                        class="btn btn-primary pull-left">VOLTAR</button>
+                                    <button mat-raised-button (click)="irParaPlano()"
+                                        class="btn btn-primary pull-right">PROSSEGUIR</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<modal [animation]="false" class="modal modal-fit" #modalCnaePrimaria>
+    <modal-header [show-close]="true">
+        <h5 class="modal-title"> Atividade Principal</h5>
+    </modal-header>
+    <modal-body>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group no-border">
+                    <input type="text" [(ngModel)]="termoPrimaria" class="form-control" placeholder="Pesquisar...">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" *ngFor="let cnae of cnaes  | filter:termoPrimaria">
+                <div class="form-check form-check-radio">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="radiosCnaePrimaria"
+                            [(ngModel)]="atividadePrimariaChecked" id="{{cnae.id}}" [value]="cnae.id">
+                        <label><strong>{{cnae.codigo}}</strong> -
+                            {{cnae.descricao}} -
+                            Alíquota {{cnae.aliquota}}%</label>
+                        <span class="circle">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-primary" (click)="adicionarPrimario()">Adicionar</button>
+    </modal-footer>
+</modal>
+
+<modal [animation]="false" class="modal modal-fit" #cnaeSecundaria>
+    <modal-header [show-close]="true">
+        <h5 class="modal-title"> Atividade Secundaria</h5>
+    </modal-header>
+    <modal-body>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group no-border">
+                    <input type="text" [(ngModel)]="termoSecundaria" class="form-control" placeholder="Pesquisar...">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" *ngFor="let cnae of cnaes  | filter:termoSecundaria">
+                <div class="form-check form-check-radio">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="radiosCnaeSecundaria"
+                            [(ngModel)]="atividadeSecundariaChecked" id="{{cnae.id}}" [value]="cnae.id">
+                        <label><strong>{{cnae.codigo}}</strong> -
+                            {{cnae.descricao}} -
+                            Alíquota {{cnae.aliquota}}%</label>
+
+                        <span class="circle">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-primary" (click)="adicionarSecundaria()">Adicionar</button>
+    </modal-footer>
+</modal>
