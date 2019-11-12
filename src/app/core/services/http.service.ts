@@ -21,7 +21,7 @@ export class HttpService {
         private router: Router) { }
 
     endPointUrl(path: string) {
-        return `http://localhost:12345/api/${path}`;
+        return `https://app-vireicontador.azurewebsites.net/api/${path}`;
     }
 
     createHeader(headers: Headers) {
