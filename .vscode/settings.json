@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d2314254-e813-4cb1-a0ab-dd203d64b910/resourceGroups/vireicontadorrecursos/providers/Microsoft.Web/sites/vireicontador-app",
+    "appService.deploySubpath": ""
+}
