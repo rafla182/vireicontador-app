@@ -8,6 +8,7 @@ import { Result } from '../models/result';
 import { ToastrService } from 'ngx-toastr';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { DomainService } from './domain.service';
 
 @Injectable()
 export class HttpService {
@@ -18,13 +19,14 @@ export class HttpService {
         private http: Http,
         private loadingService: LoadingService,
         private toastrService: ToastrService,
-        private router: Router) { }
+        private router: Router,
+        private domainService: DomainService) { }
 
     endPointUrl(path: string) {
-        return `https://app-vireicontador.azurewebsites.net/api/${path}`;
+        return `${this.domainService.get().api}${path}`;
     }
 
-    createHeader(headers: Headers) {
+    createHeader(headers: Headers) {-
         headers.append('Content-Type', 'application/json');
     }
     createOptions(blob: boolean = false) {
