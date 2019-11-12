@@ -28,6 +28,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ModalModule } from './core/components/ng2-bs4-modal/lib/ng2-bs4-modal.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ToastrModule } from 'ngx-toastr';
+import { OnlyNumber } from './directives/only-number.directive';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -58,11 +60,13 @@ import { ToastrModule } from 'ngx-toastr';
     declarations: [
         AppComponent,
         AdminLayoutComponent,
+        DashboardComponent,
         AbrirEmpresaComponent,
         DadosUsuarioComponent,
         DadosEmpresaComponent,
         EscolhaPlanoComponent,
-        PagamentoComponent
+        PagamentoComponent,
+        OnlyNumber
 
     ],
     providers: [HttpService, AbrirEmpresaService, LoadingService],
