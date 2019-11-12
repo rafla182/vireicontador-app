@@ -8,7 +8,7 @@ import { AbrirEmpresaComponent } from './layouts/abrir-empresa/abrir-empresa.com
 
 const routes: Routes = [
    {
-        path: 'abertura',
+        path: '',
         component: AbrirEmpresaComponent,
         children: [{
             path: '',
