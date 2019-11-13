@@ -23,32 +23,33 @@ export class DadosUsuarioComponent implements OnInit {
 
     irParaEmpresa() {
 
-        let validate = true;
-        if (!this.model.nome) {
-            this.toastr.error('Nome não preenchido.')
-            validate = false;
-        }
-        if (!this.model.email) {
-            this.toastr.error('Email não preenchido.')
-            validate = false;
-        }
-        if (!this.model.cpf) {
-            this.toastr.error('CPF não preenchido.')
-            validate = false;
-        }
-        if (!this.model.telefone) {
-            this.toastr.error('Telefone não preenchido.')
-            validate = false;
-        }
-        if (!this.model.cep || !this.model.estado
-            || !this.model.cidade || !this.model.bairro || !this.model.logradouro || !this.model.numero) {
-            this.toastr.error('Endereço não preenchido completo.')
-            validate = false;
-        }
+        // let validate = true;
+        // if (!this.model.nome) {
+        //     this.toastr.error('Nome não preenchido.')
+        //     validate = false;
+        // }
+        // if (!this.model.email) {
+        //     this.toastr.error('Email não preenchido.')
+        //     validate = false;
+        // }
+        // if (!this.model.cpf) {
+        //     this.toastr.error('CPF não preenchido.')
+        //     validate = false;
+        // }
+        // if (!this.model.telefone) {
+        //     this.toastr.error('Telefone não preenchido.')
+        //     validate = false;
+        // }
+        // if (!this.model.cep || !this.model.estado
+        //     || !this.model.cidade || !this.model.bairro || !this.model.logradouro || !this.model.numero) {
+        //     this.toastr.error('Endereço não preenchido completo.')
+        //     validate = false;
+        // }
 
-        if (validate) {
-            this.trocarTela.emit('empresa');
-        }
+        // if (validate) {
+        //     this.trocarTela.emit('empresa');
+        // }
+        this.trocarTela.emit('empresa');
     }
 
     pegarCep() {

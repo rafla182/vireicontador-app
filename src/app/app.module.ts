@@ -7,16 +7,15 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {
     MatRadioButton, MatRadioGroup,
     MatButtonModule, MatRippleModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTooltipModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
-import { DadosUsuarioComponent } from './dados-usuario/dados-usuario.component';
-import { DadosEmpresaComponent } from './dados-empresa/dados-empresa.component';
-import { EscolhaPlanoComponent } from './escolha-plano/escolha-plano.component';
-import { PagamentoComponent } from './pagamento/pagamento.component';
+import { DadosUsuarioComponent } from './abrir-empresa/dados-usuario/dados-usuario.component';
+import { DadosEmpresaComponent } from './abrir-empresa/dados-empresa/dados-empresa.component';
+import { EscolhaPlanoComponent } from './abrir-empresa/escolha-plano/escolha-plano.component';
+import { PagamentoComponent } from './abrir-empresa/pagamento/pagamento.component';
 import { AbrirEmpresaComponent } from './layouts/abrir-empresa/abrir-empresa.component';
 import { CpfCnpjModule } from 'ng2-cpf-cnpj';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
@@ -30,6 +29,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ToastrModule } from 'ngx-toastr';
 import { OnlyNumber } from './directives/only-number.directive';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MigrarEmpresaComponent } from './layouts/migrar-empresa/migrar-empresa.component';
+import { MigrarDadosUsuarioComponent } from './migrar-empresa/migrar-dados-usuario/migrar-dados-usuario.component';
+import { MigrarDadosEmpresaComponent } from './migrar-empresa/migrar-dados-empresa/migrar-dados-empresa.component';
+import { MigrarEscolhaPlanoComponent } from './migrar-empresa/migrar-escolha-plano/migrar-escolha-plano.component';
+import { MigrarEmpresaService } from './layouts/migrar-empresa/migrar-empresa.services';
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -59,17 +63,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ],
     declarations: [
         AppComponent,
-        AdminLayoutComponent,
         DashboardComponent,
         AbrirEmpresaComponent,
+        MigrarEmpresaComponent,
         DadosUsuarioComponent,
         DadosEmpresaComponent,
         EscolhaPlanoComponent,
         PagamentoComponent,
+        MigrarDadosUsuarioComponent,
+        MigrarDadosEmpresaComponent,
+        MigrarEscolhaPlanoComponent,
         OnlyNumber
 
     ],
-    providers: [HttpService, AbrirEmpresaService, LoadingService],
+    providers: [HttpService, AbrirEmpresaService, MigrarEmpresaService, LoadingService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

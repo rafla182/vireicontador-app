@@ -1,28 +1,32 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
+import { Component, OnInit, Input } from '@angular/core';
+import { Location, PopStateEvent } from '@angular/common';
 import 'rxjs/add/operator/filter';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
 
 @Component({
-    selector: 'app-admin-layout',
-    templateUrl: './admin-layout.component.html',
-    styleUrls: ['./admin-layout.component.scss']
+    selector: 'app-migrar-empresa',
+    templateUrl: './migrar-empresa.component.html',
+    styleUrls: ['./migrar-empresa.component.scss']
 })
-export class AdminLayoutComponent implements OnInit {
+export class MigrarEmpresaComponent implements OnInit {
     private _router: Subscription;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
 
     @Input() tela = 'usuario';
-    model = {};
+    model: any = {};
 
-    constructor(public location: Location, private router: Router) { }
+    constructor(public location: Location, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
+
+        this.route.queryParams.subscribe(params => {
+            this.model.email = params.email;
+        });
+
         const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
         if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
@@ -38,6 +42,7 @@ export class AdminLayoutComponent implements OnInit {
         this.location.subscribe((ev: PopStateEvent) => {
             this.lastPoppedUrl = ev.url;
         });
+
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
                 if (event.url != this.lastPoppedUrl)
@@ -109,26 +114,7 @@ export class AdminLayoutComponent implements OnInit {
             $(this).parent('li').addClass('active');
 
 
-            var new_image = $(this).find("img").attr('src');
 
-            if ($sidebar_img_container.length != 0) {
-                $sidebar_img_container.fadeOut('fast', function () {
-                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                    $sidebar_img_container.fadeIn('fast');
-                });
-            }
-
-            if ($full_page_background.length != 0) {
-
-                $full_page_background.fadeOut('fast', function () {
-                    $full_page_background.css('background-image', 'url("' + new_image + '")');
-                    $full_page_background.fadeIn('fast');
-                });
-            }
-
-            if ($sidebar_responsive.length != 0) {
-                $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-            }
         });
     }
     ngAfterViewInit() {

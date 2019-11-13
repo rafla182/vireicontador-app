@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
-
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AbrirEmpresaComponent } from './layouts/abrir-empresa/abrir-empresa.component';
+import { MigrarEmpresaComponent } from './layouts/migrar-empresa/migrar-empresa.component';
 
 const routes: Routes = [
-   {
-        path: '',
+    {
+        path: 'abertura',
         component: AbrirEmpresaComponent,
         children: [{
             path: '',
@@ -17,10 +16,10 @@ const routes: Routes = [
     },
     {
         path: 'migrar',
-        component: AbrirEmpresaComponent,
+        component: MigrarEmpresaComponent,
         children: [{
             path: '',
-            loadChildren: './layouts/abrir-empresa/abrir-empresa.module#AbrirEmpresaModule'
+            loadChildren: './layouts/migrar-empresa/migrar-empresa.module#MigrarEmpresaModule'
         }]
     }
 ];

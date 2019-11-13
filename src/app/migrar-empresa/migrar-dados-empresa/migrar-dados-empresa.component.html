@@ -1,0 +1,63 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Dados da Empresa</h4>
+                        <p class="card-category">Olá, preencha as informações.</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="CNPJ" type="text" [(ngModel)]="model.cnpj"
+                                            (focusout)="pegarEmpresa()" #cnpjInput="ngModel" [cnpj]="model.cnpj"
+                                            mask="00.000.000/0000-00" required [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                    <div *ngIf="cnpjInput.invalid && (cnpjInput.dirty || cnpjInput.touched)">
+                                        <div *ngIf="cnpjInput?.errors?.cpf">CNPJ inválido.</div>
+                                        <div *ngIf="cnpjInput?.errors?.required">CNPJ Obrigatório.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Regime Tributário" type="text"
+                                            [(ngModel)]="model.regimeTributario" required
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Funcionários" type="text" required
+                                            [(ngModel)]="model.funcionario" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Razão Social" type="text" [(ngModel)]="model.nome"
+                                            required [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nome Fantasia" type="text"
+                                            [(ngModel)]="model.nomeFantasia" required
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button (click)="irParaEmpresa()"
+                                class="btn btn-primary pull-right">PROSSEGUIR</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

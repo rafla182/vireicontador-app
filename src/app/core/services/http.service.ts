@@ -39,7 +39,6 @@ export class HttpService {
         }
 
         if (!blob) return;
-
         headers.append('responseType', 'arraybuffer');
 
         this.httpOptions = {
@@ -58,6 +57,7 @@ export class HttpService {
     }
 
     getFullUrl(url, useLoading = true) {
+        this.createOptions(false);
         this.startLoading(useLoading);
         return this.http.get(url)
             .map(response => response.json())
