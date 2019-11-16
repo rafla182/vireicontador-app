@@ -34,6 +34,7 @@ import { MigrarDadosUsuarioComponent } from './migrar-empresa/migrar-dados-usuar
 import { MigrarDadosEmpresaComponent } from './migrar-empresa/migrar-dados-empresa/migrar-dados-empresa.component';
 import { MigrarEscolhaPlanoComponent } from './migrar-empresa/migrar-escolha-plano/migrar-escolha-plano.component';
 import { MigrarEmpresaService } from './layouts/migrar-empresa/migrar-empresa.services';
+import { MigrarPagamentoComponent } from './migrar-empresa/migrar-pagamento/migrar-pagamento.component';
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -73,6 +74,7 @@ import { MigrarEmpresaService } from './layouts/migrar-empresa/migrar-empresa.se
         MigrarDadosUsuarioComponent,
         MigrarDadosEmpresaComponent,
         MigrarEscolhaPlanoComponent,
+        MigrarPagamentoComponent,
         OnlyNumber
 
     ],
