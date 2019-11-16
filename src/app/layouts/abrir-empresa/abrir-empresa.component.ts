@@ -26,6 +26,7 @@ export class AbrirEmpresaComponent implements OnInit {
 
         this.route.queryParams.subscribe(params => {
             this.model.email = params.email;
+            this.model.valorPlano = params.valorPlano;
         });
 
         const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;

@@ -6,6 +6,7 @@ export class AbrirEmpresaService {
 
     private pegarCepUrl: string = 'https://viacep.com.br/ws/';
     private getCnaesUrl = 'cnaes';
+    private salvarUrl = 'salvar';
 
     constructor(private httpService: HttpService) { }
 
@@ -16,6 +17,11 @@ export class AbrirEmpresaService {
 
     getCnaes() {
         return this.httpService.get(`${this.getCnaesUrl}`);
+    }
+
+    salvar(cliente) {
+        console.log(cliente);
+        return this.httpService.post(`${this.salvarUrl}`, { cliente });
     }
 
 }

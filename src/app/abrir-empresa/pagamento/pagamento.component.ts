@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AbrirEmpresaService } from 'app/layouts/abrir-empresa/abrir-empresa.services';
 
 @Component({
     selector: 'app-pagamento',
@@ -11,7 +12,7 @@ export class PagamentoComponent implements OnInit {
     @Output() trocarTela: EventEmitter<string> = new EventEmitter();
     @Input() model: any;
     termoAceito = false;
-    constructor(private toastr: ToastrService) { }
+    constructor(private toastr: ToastrService, private abrirEmpresaService: AbrirEmpresaService) { }
 
     ngOnInit() {
         this.model.cartaoCredito = {
@@ -30,6 +31,11 @@ export class PagamentoComponent implements OnInit {
             this.toastr.error('É necessário aceitar o termo.');
         }
         console.log(this.model);
+
+        this.abrirEmpresaService.salvar(this.model).subscribe(arg =>
+            this.toastr.error('Cliente salvo com sucesso.')
+            );
+        
     }
 
     gerarBoleto() {

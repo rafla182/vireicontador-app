@@ -45,7 +45,7 @@
                                                     <td>PAGAR AGORA (Antecipação):
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <div>R$99,90</div>
+                                                        <div>{{model.valorPlano | currency:'BRL':true}}</div>
                                                     </td>
                                                 </tr>
                                                 <!-- <tr>
@@ -111,7 +111,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="CVV" type="number"
+                                                    <input OnlyNumber="true" matInput placeholder="CVV" type="text"
                                                         [(ngModel)]="model.cartaoCredito.cvv">
                                                 </mat-form-field>
                                             </div>
@@ -125,8 +125,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="MM/AA" mask="00/00" type="number"
-                                                        [(ngModel)]="model.cartaoCredito.vencimento">
+                                                    <input matInput OnlyNumber="true" placeholder="MM/AA" mask="00/00"
+                                                        type="text" [(ngModel)]="model.cartaoCredito.vencimento">
                                                 </mat-form-field>
                                             </div>
                                         </div>

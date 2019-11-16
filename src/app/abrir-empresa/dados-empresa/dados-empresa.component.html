@@ -73,14 +73,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <ng-select [items]="tipoSociedade" bindLabel="descricao" bindValue="id"
+                                    <ng-select [items]="tipoSociedade" [ngModelOptions]="{standalone: true}" [(ngModel)]="sociedade" bindLabel="descricao" bindValue="id" required
                                         placeholder="Tipo de Sociedade"></ng-select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <mat-form-field class="example-full-width">
-                                        <textarea matInput placeholder="Descreva, resumidamente, com suas palavras quais atividades de
+                                        <textarea matInput [(ngModel)]="model.atividadeDesc"
+                                            [ngModelOptions]="{standalone: true}" required placeholder="Descreva, resumidamente, com suas palavras quais atividades de
                                             serviço ou
                                             comércio serão oferecidas por sua empresa."></textarea>
                                     </mat-form-field>

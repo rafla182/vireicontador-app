@@ -18,7 +18,7 @@ export class DadosUsuarioComponent implements OnInit {
         private toastr: ToastrService) { }
 
     ngOnInit() {
-        this.model.empresaCidade = 'S';
+        this.model.empresaCidade = true;
     }
 
     irParaEmpresa() {
@@ -54,7 +54,6 @@ export class DadosUsuarioComponent implements OnInit {
 
     pegarCep() {
         this.abrirEmpresaService.pegarCep(this.model.cep).subscribe(response => {
-            console.log(response);
             this.model.estado = response.uf;
             this.model.cidade = response.localidade;
             this.model.bairro = response.bairro;

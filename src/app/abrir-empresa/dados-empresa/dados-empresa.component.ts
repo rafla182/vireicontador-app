@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angu
 import { AbrirEmpresaService } from 'app/layouts/abrir-empresa/abrir-empresa.services';
 import { ModalComponent } from 'app/core/components/ng2-bs4-modal/lib/components/modal';
 import { Route, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-dados-empresa',
@@ -26,22 +27,40 @@ export class DadosEmpresaComponent implements OnInit {
     @ViewChild('cnaeSecundaria', { static: true })
     cnaeSecundaria: ModalComponent;
 
-    constructor(private abrirEmpresaService: AbrirEmpresaService) { }
+    sociedade: any;
+
+    constructor(private abrirEmpresaService: AbrirEmpresaService,
+        private toastr: ToastrService) { }
 
     ngOnInit() {
         console.log(this.model);
-        this.tipoSociedade = [{ id: '1', descricao: 'Apenas eu' }, { id: '2', descricao: 'Sócio + 1' }, { id: '1', descricao: 'Sócio + 2' }]
+        this.tipoSociedade = [{ id: 1, descricao: 'Apenas eu' }, { id: 2, descricao: 'Sócio + 1' }, { id: 3, descricao: 'Sócio + 2' }]
         this.getCnae();
         this.model.atividadePrimaria = {
-            id: 0
         };
         this.model.atividadeSecundaria = {
-            id: 0
         }
     }
 
     irParaPlano() {
-        this.trocarTela.emit('plano');
+
+        this.model.tipoSociedade = this.tipoSociedade.find(p => this.sociedade == p.id).descricao;
+
+        let validate = true;
+        if (!this.model.tipoSociedade) {
+            this.toastr.error('Tipo de sociedade não está preenchido.');
+            validate = false;
+        }
+
+        if (!(this.model.atividadePrimaria.id > 0)) {
+            this.toastr.error('É necessário informar a atividade primária.');
+            validate = false;
+        }
+
+        if (validate) {
+            this.trocarTela.emit('plano');
+        }
+
     }
 
     irParaEmpresa() {

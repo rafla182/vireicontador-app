@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { AbrirEmpresaService } from 'app/layouts/abrir-empresa/abrir-empresa.services';
 
 @Component({
     selector: 'app-escolha-plano',
@@ -10,18 +11,24 @@ export class EscolhaPlanoComponent implements OnInit {
     @Output() trocarTela: EventEmitter<string> = new EventEmitter();
     @Input() model: any;
 
-    constructor() { }
+    constructor(private abrirEmpresaService: AbrirEmpresaService) { }
 
     ngOnInit() {
     }
 
     irParaPagamento(cliente) {
-        console.log(cliente);
+
+        this.abrirEmpresaService.salvar(this.model).subscribe(arg => { }
+        );
+
         if (cliente == 0) {
-            this.model.cliente = false;
+            this.model.queroSerCliente = false;
         } else {
-            this.model.cliente = true;
+            this.model.queroSerCliente = true;
         }
+
+        console.log(this.model);
+        
         this.trocarTela.emit('pagamento');
     }
 
