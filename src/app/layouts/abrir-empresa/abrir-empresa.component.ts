@@ -6,6 +6,7 @@ import { Router, NavigationEnd, NavigationStart, ActivatedRoute } from '@angular
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
+import { AbrirEmpresaService } from './abrir-empresa.services';
 
 @Component({
     selector: 'app-abrir-empresa',
@@ -20,14 +21,20 @@ export class AbrirEmpresaComponent implements OnInit {
     @Input() tela = 'usuario';
     model: any = {};
 
-    constructor(public location: Location, private router: Router, private route: ActivatedRoute) { }
+    constructor(public location: Location, private router: Router, private route: ActivatedRoute, private abrirEmpresaService: AbrirEmpresaService) { }
 
     ngOnInit() {
 
         this.route.queryParams.subscribe(params => {
+            console.log("teadw");
             this.model.email = params.email;
-            this.model.valorPlano = params.valorPlano;
+            this.abrirEmpresaService.pegarPlano(this.model.email).subscribe(response => {
+                console.log(response);
+                this.model.valorPlano = response.resultado;
+            });
         });
+
+        
 
         const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 

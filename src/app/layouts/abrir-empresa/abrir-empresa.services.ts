@@ -4,10 +4,11 @@ import { HttpService } from 'app/core/services/http.service';
 @Injectable()
 export class AbrirEmpresaService {
 
+
     private pegarCepUrl: string = 'https://viacep.com.br/ws/';
     private getCnaesUrl = 'cnaes';
     private salvarUrl = 'salvar';
-
+    private pegarPLanoUrl = 'hash/';
     constructor(private httpService: HttpService) { }
 
     pegarCep(numero) {
@@ -22,6 +23,10 @@ export class AbrirEmpresaService {
     salvar(cliente) {
         console.log(cliente);
         return this.httpService.post(`${this.salvarUrl}`, { cliente });
+    }
+
+    pegarPlano(email: any) {
+        return this.httpService.get(`${this.pegarPLanoUrl}${email}`);
     }
 
 }
