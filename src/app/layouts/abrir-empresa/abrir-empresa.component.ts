@@ -25,15 +25,19 @@ export class AbrirEmpresaComponent implements OnInit {
 
     ngOnInit() {
 
+        this.model.cliente = {};
+        this.model.plano = {};
+        
+
         this.route.queryParams.subscribe(params => {
             
-            this.model.email = params.email;
-            this.model.nome = params.nome;
+            this.model.cliente.email = params.email;
+            this.model.cliente.nome = params.nome;
 
             this.abrirEmpresaService.pegarPlano(this.model.email).subscribe(response => {
                 console.log(response);
-                this.model.valorPlano = response.resultado.valorPlano;
-                this.model.plano = response.resultado.plano;
+                this.model.plano.valorPlano = response.resultado.valorPlano;
+                this.model.plano.plano = response.resultado.plano;
             });
         });
 
