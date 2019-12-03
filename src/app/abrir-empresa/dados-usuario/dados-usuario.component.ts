@@ -18,46 +18,46 @@ export class DadosUsuarioComponent implements OnInit {
         private toastr: ToastrService) { }
 
     ngOnInit() {
-        this.model.empresaCidade = true;
+        this.model.cliente.empresaCidade = true;
     }
 
     irParaEmpresa() {
 
-        // let validate = true;
-        // if (!this.model.nome) {
-        //     this.toastr.error('Nome não preenchido.')
-        //     validate = false;
-        // }
-        // if (!this.model.email) {
-        //     this.toastr.error('Email não preenchido.')
-        //     validate = false;
-        // }
-        // if (!this.model.cpf) {
-        //     this.toastr.error('CPF não preenchido.')
-        //     validate = false;
-        // }
-        // if (!this.model.telefone) {
-        //     this.toastr.error('Telefone não preenchido.')
-        //     validate = false;
-        // }
-        // if (!this.model.cep || !this.model.estado
-        //     || !this.model.cidade || !this.model.bairro || !this.model.logradouro || !this.model.numero) {
-        //     this.toastr.error('Endereço não preenchido completo.')
-        //     validate = false;
-        // }
+        let validate = true;
+        if (!this.model.cliente.nome) {
+            this.toastr.error('Nome não preenchido.')
+            validate = false;
+        }
+        if (!this.model.cliente.email) {
+            this.toastr.error('Email não preenchido.')
+            validate = false;
+        }
+        if (!this.model.cliente.cpf) {
+            this.toastr.error('CPF não preenchido.')
+            validate = false;
+        }
+        if (!this.model.cliente.telefone) {
+            this.toastr.error('Telefone não preenchido.')
+            validate = false;
+        }
+        if (!this.model.cliente.cep || !this.model.cliente.estado
+            || !this.model.cliente.cidade || !this.model.cliente.bairro || !this.model.cliente.logradouro || !this.model.cliente.numero) {
+            this.toastr.error('Endereço não preenchido completo.')
+            validate = false;
+        }
 
-        // if (validate) {
-        //     this.trocarTela.emit('empresa');
-        // }
+        if (validate) {
+            this.trocarTela.emit('empresa');
+        }
         this.trocarTela.emit('empresa');
     }
 
     pegarCep() {
-        this.abrirEmpresaService.pegarCep(this.model.cep).subscribe(response => {
-            this.model.estado = response.uf;
-            this.model.cidade = response.localidade;
-            this.model.bairro = response.bairro;
-            this.model.logradouro = response.logradouro;
+        this.abrirEmpresaService.pegarCep(this.model.cliente.cep).subscribe(response => {
+            this.model.cliente.estado = response.uf;
+            this.model.cliente.cidade = response.localidade;
+            this.model.cliente.bairro = response.bairro;
+            this.model.cliente.logradouro = response.logradouro;
         });
     }
 }

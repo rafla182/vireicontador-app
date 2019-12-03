@@ -12,14 +12,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Nome Completo" type="text" [(ngModel)]="model.nome"
+                                        <input matInput placeholder="Nome Completo" type="text" [(ngModel)]="model.cliente.nome"
                                             required [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="CPF" type="text" [(ngModel)]="model.cpf"
-                                            #cpfInput="ngModel" [cpf]="model.cpf" mask="000.000.000-99" required
+                                        <input matInput placeholder="CPF" type="text" [(ngModel)]="model.cliente.cpf"
+                                            #cpfInput="ngModel" [cpf]="model.cliente.cpf" mask="000.000.000-99" required
                                             [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                     <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)">
@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="email" id="email" [(ngModel)]="model.email" disabled
+                                        <input matInput type="text" name="email" id="email" [(ngModel)]="model.cliente.email" disabled
                                             placeholder="Email" required email #email="ngModel">
                                     </mat-form-field>
                                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
@@ -42,14 +42,14 @@
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Telefone" type="text" mask="(00) 00000-0000"
-                                            required [(ngModel)]="model.telefone" [ngModelOptions]="{standalone: true}">
+                                            required [(ngModel)]="model.cliente.telefone" [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="CEP" type="text" [(ngModel)]="model.cep" required
+                                        <input matInput placeholder="CEP" type="text" [(ngModel)]="model.cliente.cep" required
                                             (keydown.tab)="pegarCep()" mask="00000-000"
                                             [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
@@ -59,19 +59,19 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Estado" type="text" [(ngModel)]="model.estado"
+                                        <input matInput placeholder="Estado" type="text" [(ngModel)]="model.cliente.estado"
                                             required disabled [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Cidade" type="text" [(ngModel)]="model.cidade"
+                                        <input matInput placeholder="Cidade" type="text" [(ngModel)]="model.cliente.cidade"
                                             disabled required [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Bairro" type="text" [(ngModel)]="model.bairro"
+                                        <input matInput placeholder="Bairro" type="text" [(ngModel)]="model.cliente.bairro"
                                             disabled required [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
@@ -80,19 +80,19 @@
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Logradouro" type="text" required disabled
-                                            [(ngModel)]="model.logradouro" [ngModelOptions]="{standalone: true}">
+                                            [(ngModel)]="model.cliente.logradouro" [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput required placeholder="Número" type="text"
-                                            [(ngModel)]="model.numero" [ngModelOptions]="{standalone: true}">
+                                            [(ngModel)]="model.cliente.numero" [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Complemento" type="text"
-                                            [(ngModel)]="model.complemento" [ngModelOptions]="{standalone: true}">
+                                            [(ngModel)]="model.cliente.complemento" [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     <div class="form-check form-check-radio">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio"
-                                                [(ngModel)]="model.empresaCidade" [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="model.cliente.empresaCidade" [ngModelOptions]="{standalone: true}"
                                                 [value]="true" checked>
                                             SIM
                                             <span class="circle">
@@ -114,7 +114,7 @@
                                     <div class="form-check form-check-radio">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio"
-                                                [(ngModel)]="model.empresaCidade" [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="model.cliente.empresaCidade" [ngModelOptions]="{standalone: true}"
                                                 [value]="false">
                                             NÃO
                                             <span class="circle">

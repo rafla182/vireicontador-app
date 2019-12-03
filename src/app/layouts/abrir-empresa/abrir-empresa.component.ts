@@ -26,15 +26,16 @@ export class AbrirEmpresaComponent implements OnInit {
     ngOnInit() {
 
         this.route.queryParams.subscribe(params => {
-            console.log("teadw");
+            
             this.model.email = params.email;
+            this.model.nome = params.nome;
+
             this.abrirEmpresaService.pegarPlano(this.model.email).subscribe(response => {
                 console.log(response);
-                this.model.valorPlano = response.resultado;
+                this.model.valorPlano = response.resultado.valorPlano;
+                this.model.plano = response.resultado.plano;
             });
         });
-
-        
 
         const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 

@@ -23,7 +23,7 @@
                                                     </td>
                                                     <td class="td-actions text-right">
                                                         <div>
-                                                            <h4> Simples Serviço</h4>
+                                                            <h4>{{modelo.plano.plano}}</h4>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -45,7 +45,7 @@
                                                     <td>PAGAR AGORA (Antecipação):
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <div>{{model.valorPlano | currency:'BRL':true}}</div>
+                                                        <div>{{model.plano.valorPlano | currency:'BRL':true}}</div>
                                                     </td>
                                                 </tr>
                                                 <!-- <tr>
@@ -106,13 +106,13 @@
                                             <div class="col-md-6">
                                                 <mat-form-field class="example-full-width">
                                                     <input OnlyNumber="true" matInput placeholder="Nº Cartão"
-                                                        [(ngModel)]="model.cartaoCredito.numero" type="number">
+                                                        [(ngModel)]="model.plano.cartaoCredito.numero" type="number">
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-6">
                                                 <mat-form-field class="example-full-width">
                                                     <input OnlyNumber="true" matInput placeholder="CVV" type="text"
-                                                        [(ngModel)]="model.cartaoCredito.cvv">
+                                                        [(ngModel)]="model.plano.cartaoCredito.cvv">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -120,13 +120,13 @@
                                             <div class="col-md-6">
                                                 <mat-form-field class="example-full-width">
                                                     <input matInput placeholder="Titular do Cartão" type="text"
-                                                        [(ngModel)]="model.cartaoCredito.titularCartao">
+                                                        [(ngModel)]="model.plano.cartaoCredito.titularCartao">
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-4">
                                                 <mat-form-field class="example-full-width">
                                                     <input matInput OnlyNumber="true" placeholder="MM/AA" mask="00/00"
-                                                        type="text" [(ngModel)]="model.cartaoCredito.vencimento">
+                                                        type="text" [(ngModel)]="model.plano.cartaoCredito.vencimento">
                                                 </mat-form-field>
                                             </div>
                                         </div>

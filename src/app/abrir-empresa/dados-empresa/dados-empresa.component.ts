@@ -36,9 +36,9 @@ export class DadosEmpresaComponent implements OnInit {
         console.log(this.model);
         this.tipoSociedade = [{ id: 1, descricao: 'Apenas eu' }, { id: 2, descricao: 'Sócio + 1' }, { id: 3, descricao: 'Sócio + 2' }]
         this.getCnae();
-        this.model.atividadePrimaria = {
+        this.model.cliente.atividadePrimaria = {
         };
-        this.model.atividadeSecundaria = {
+        this.model.cliente.atividadeSecundaria = {
         }
     }
 
@@ -47,12 +47,12 @@ export class DadosEmpresaComponent implements OnInit {
         this.model.tipoSociedade = this.tipoSociedade.find(p => this.sociedade == p.id).descricao;
 
         let validate = true;
-        if (!this.model.tipoSociedade) {
+        if (!this.model.cliente.tipoSociedade) {
             this.toastr.error('Tipo de sociedade não está preenchido.');
             validate = false;
         }
 
-        if (!(this.model.atividadePrimaria.id > 0)) {
+        if (!(this.model.cliente.atividadePrimaria.id > 0)) {
             this.toastr.error('É necessário informar a atividade primária.');
             validate = false;
         }
@@ -96,12 +96,12 @@ export class DadosEmpresaComponent implements OnInit {
     }
 
     adicionarPrimario() {
-        this.model.atividadePrimaria = this.cnaes.find(p => p.id === this.atividadePrimariaChecked)
+        this.model.cliente.atividadePrimaria = this.cnaes.find(p => p.id === this.atividadePrimariaChecked)
         this.closeCnaePrimaria();
     }
 
     adicionarSecundaria() {
-        this.model.atividadeSecundaria = this.cnaes.find(p => p.id === this.atividadeSecundariaChecked)
+        this.model.cliente.atividadeSecundaria = this.cnaes.find(p => p.id === this.atividadeSecundariaChecked)
         this.closeCnaeSecundaria();
     }
 }

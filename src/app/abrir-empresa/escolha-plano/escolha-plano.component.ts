@@ -22,9 +22,9 @@ export class EscolhaPlanoComponent implements OnInit {
         );
 
         if (cliente == 0) {
-            this.model.queroSerCliente = false;
+            this.model.plano.queroSerCliente = false;
         } else {
-            this.model.queroSerCliente = true;
+            this.model.plano.queroSerCliente = true;
         }
 
         console.log(this.model);

@@ -15,7 +15,7 @@ export class PagamentoComponent implements OnInit {
     constructor(private toastr: ToastrService, private abrirEmpresaService: AbrirEmpresaService) { }
 
     ngOnInit() {
-        this.model.cartaoCredito = {
+        this.model.plano.cartaoCredito = {
             numero: null,
             cvv: null,
             titularCartao: null,
@@ -24,22 +24,22 @@ export class PagamentoComponent implements OnInit {
     }
 
     pagarAgora() {
-        this.model.tipoPagamento = 'cartaoCredito';
-       
+        this.model.plano.tipoPagamento = 'cartaoCredito';
+
         console.log(this.termoAceito);
         if (!this.termoAceito) {
             this.toastr.error('É necessário aceitar o termo.');
         }
+
         console.log(this.model);
 
         this.abrirEmpresaService.salvar(this.model).subscribe(arg =>
             this.toastr.error('Cliente salvo com sucesso.')
-            );
-        
+        );
     }
 
     gerarBoleto() {
-        this.model.tipoPagamento = 'boleto';
+        this.model.plano.tipoPagamento = 'boleto';
         console.log(this.model);
     }
 }
