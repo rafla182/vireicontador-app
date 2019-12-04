@@ -24,22 +24,27 @@ export class PagamentoComponent implements OnInit {
     }
 
     pagarAgora() {
-        this.model.plano.tipoPagamento = 'cartaoCredito';
+        this.model.fatura.tipoPagamento = 'credit_card';
 
-        console.log(this.termoAceito);
         if (!this.termoAceito) {
             this.toastr.error('É necessário aceitar o termo.');
         }
-
-        console.log(this.model);
-
-        this.abrirEmpresaService.salvar(this.model).subscribe(arg =>
-            this.toastr.error('Cliente salvo com sucesso.')
-        );
+        this.salvar();
     }
 
     gerarBoleto() {
-        this.model.plano.tipoPagamento = 'boleto';
+        this.model.fatura.tipoPagamento = 'bank_slip';
+    }
+
+    salvar() {
         console.log(this.model);
+
+        var cliente = this.model.cliente;
+        var assinatura = this.model.plano;
+        var fatura = this.model.fatura;
+
+        this.abrirEmpresaService.salvar(cliente, assinatura, fatura).subscribe(arg =>
+            this.toastr.error('Cliente salvo com sucesso.')
+        );
     }
 }

@@ -18,9 +18,6 @@ export class EscolhaPlanoComponent implements OnInit {
 
     irParaPagamento(cliente) {
 
-        this.abrirEmpresaService.salvar(this.model).subscribe(arg => { }
-        );
-
         if (cliente == 0) {
             this.model.plano.queroSerCliente = false;
         } else {
@@ -28,7 +25,7 @@ export class EscolhaPlanoComponent implements OnInit {
         }
 
         console.log(this.model);
-        
+
         this.trocarTela.emit('pagamento');
     }
 

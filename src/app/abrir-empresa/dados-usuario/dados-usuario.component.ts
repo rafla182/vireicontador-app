@@ -49,7 +49,6 @@ export class DadosUsuarioComponent implements OnInit {
         if (validate) {
             this.trocarTela.emit('empresa');
         }
-        this.trocarTela.emit('empresa');
     }
 
     pegarCep() {

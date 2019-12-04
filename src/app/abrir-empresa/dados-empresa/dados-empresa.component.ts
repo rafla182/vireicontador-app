@@ -44,7 +44,7 @@ export class DadosEmpresaComponent implements OnInit {
 
     irParaPlano() {
 
-        this.model.tipoSociedade = this.tipoSociedade.find(p => this.sociedade == p.id).descricao;
+        this.model.cliente.tipoSociedade = this.tipoSociedade.find(p => this.sociedade == p.id).descricao;
 
         let validate = true;
         if (!this.model.cliente.tipoSociedade) {
