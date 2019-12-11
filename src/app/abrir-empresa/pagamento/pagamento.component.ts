@@ -42,7 +42,7 @@ export class PagamentoComponent implements OnInit {
         return validate;
 
     }
-    
+
     gerarBoleto() {
         this.model.assinatura.tipoPagamento = 'bank_slip';
         if (!this.termoAceito) {
@@ -67,7 +67,10 @@ export class PagamentoComponent implements OnInit {
                 window.open(response.bill, '_blank');
             }
             this.loading = false;
-        }
+        },
+            error => {
+                this.toastr.error('Erro ao realizar a transação.');
+            }
         );
     }
 }
