@@ -20,8 +20,8 @@ export class AbrirEmpresaService {
         return this.httpService.get(`${this.getCnaesUrl}`);
     }
 
-    salvar(cliente, assinatura, fatura) {
-        return this.httpService.post(`${this.salvarUrl}`, { cliente: cliente, assinatura: assinatura, fatura: fatura });
+    salvar(cliente, assinatura, cartaoCredito) {
+        return this.httpService.post(`${this.salvarUrl}`, { cliente: cliente, assinatura: assinatura, cartao: cartaoCredito });
     }
 
     pegarPlano(email: any) {

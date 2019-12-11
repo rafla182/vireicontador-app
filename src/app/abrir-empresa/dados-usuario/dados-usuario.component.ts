@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AbrirEmpresaService } from 'app/layouts/abrir-empresa/abrir-empresa.services';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EstadosService } from 'app/core/services/estadocidade.service';
 
 @Component({
     selector: 'app-dados-usuario',
@@ -12,12 +13,26 @@ export class DadosUsuarioComponent implements OnInit {
     registerForm: FormGroup;
     @Input() model: any;
     @Output() trocarTela: EventEmitter<string> = new EventEmitter();
+    estados: any = [];
+    cidades: any = [];
+    cidade: any;
+    estado: any;
+    showEstado = false;
 
     constructor(private abrirEmpresaService: AbrirEmpresaService,
+        private estadocidadeService: EstadosService,
         private formBuilder: FormBuilder,
         private toastr: ToastrService) { }
 
     ngOnInit() {
+        this.estados = this.estadocidadeService.get().map(p => {
+            return {
+                id: p.sigla,
+                descricao: p.nome
+            };
+        });
+
+        console.log(this.estados);
         this.model.cliente.empresaCidade = true;
     }
 
@@ -58,5 +73,32 @@ export class DadosUsuarioComponent implements OnInit {
             this.model.cliente.bairro = response.bairro;
             this.model.cliente.logradouro = response.logradouro;
         });
+    }
+
+    selecionarEmpresaCidade(value) {
+        console.log(value);
+        if (value == 1) {
+            this.showEstado = true;
+
+        } else {
+            this.model.cliente.empresaEstado = '',
+            this.model.cliente.empresaCidade = '';
+            this.showEstado = false;
+        }
+
+    }
+
+    selecionarEstado(event) {
+        this.model.cliente.empresaEstado = event.descricao;
+        this.cidades = this.estadocidadeService.get().find(p => p.sigla == event.id).cidades.map(p => {
+            return {
+                id: Math.random(),
+                descricao: p
+            };
+        });
+    }
+
+    selecionarCidade(event){
+        this.model.cliente.empresaCidade = event.descricao;
     }
 }

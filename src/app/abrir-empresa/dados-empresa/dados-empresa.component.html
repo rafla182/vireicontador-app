@@ -18,21 +18,30 @@
                                             </p>
                                         </div>
                                         <div class="card-body">
-                                            <button class="btn btn-info"
-                                                (click)="openCnaePrimaria()">SELECIONAR</button>
+                                            <button class="btn btn-info" *ngIf="model.cliente.atividadePrimaria.id == 0"
+                                                (click)="openCnaePrimaria()"><i
+                                                    class="material-icons">control_point</i>&nbsp; ADICIONAR</button>
+                                            <button class="btn btn-ternary"
+                                                *ngIf="model.cliente.atividadePrimaria.id > 0"
+                                                (click)="openCnaePrimaria()"><i class="material-icons">edit</i>&nbsp;
+                                                EDITAR</button>
                                             <br>
                                             <div *ngIf="model.cliente.atividadePrimaria.id">
                                                 <div class="card alert alert-success">
                                                     <div class="card-header">
-                                                        <h4 class="card-title"><strong>Atividade Selecionada</strong>
+                                                        <h4 class="card-title"><strong>Atividade principal
+                                                                selecionada</strong>
                                                         </h4>
                                                     </div>
                                                     <div class="card-body">
-                                                        <div class="col-md-12" *ngIf="model.cliente.atividadePrimaria.id">
+                                                        <div class="col-md-12"
+                                                            *ngIf="model.cliente.atividadePrimaria.id">
                                                             <h5>
-                                                                <strong>{{model.cliente.atividadePrimaria.codigo}}</strong> -
+                                                                <strong>{{model.cliente.atividadePrimaria.codigo}}</strong>
+                                                                -
                                                                 {{model.cliente.atividadePrimaria.descricao}} -
-                                                                Alíquota {{model.cliente.atividadePrimaria.aliquota}}%</h5>
+                                                                Alíquota {{model.cliente.atividadePrimaria.aliquota}}%
+                                                            </h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -48,21 +57,35 @@
                                                 se houver.</p>
                                         </div>
                                         <div class="card-body">
-                                            <button class="btn btn-info"
-                                                (click)="openCnaeSecundaria()">SELECIONAR</button>
+                                            <button class="btn btn-info" (click)="openCnaeSecundaria()"><i
+                                                    class="material-icons">control_point</i>&nbsp;ADICIONAR</button>
                                             <br>
-                                            <div *ngIf="model.cliente.atividadeSecundaria.id">
+                                            <div *ngIf="model.cliente.atividadeSecundaria.length > 0">
                                                 <div class="card alert alert-success">
                                                     <div class="card-header">
-                                                        <h4 class="card-title"><strong>Atividade Selecionada</strong>
+                                                        <h4 class="card-title"><strong>Atividades secundárias
+                                                                selecionadas</strong>
                                                         </h4>
                                                     </div>
                                                     <div class="card-body">
-                                                        <div *ngIf="model.cliente.atividadeSecundaria.id">
-                                                            <h5>
-                                                                <strong>{{model.cliente.atividadeSecundaria.codigo}}</strong> -
-                                                                {{model.cliente.atividadeSecundaria.descricao}} -
-                                                                Alíquota {{model.cliente.atividadeSecundaria.aliquota}}%</h5>
+                                                        <div>
+
+                                                            <div class="row"
+                                                                *ngFor="let item of model.cliente.atividadeSecundaria">
+                                                                <div class="col-md-1"> <i
+                                                                        (click)="removerAtividadeSecundaria(item.codigo)"
+                                                                        class="material-icons" style="color:#fff;
+                                                    cursor: pointer;">delete</i></div>
+                                                                <div class="col-md-11">
+                                                                    <h5>
+                                                                        &nbsp;
+                                                                        <strong>{{item.codigo}}</strong>
+                                                                        -
+                                                                        {{item.descricao}} -
+                                                                        Alíquota {{item.aliquota}}%
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,7 +96,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <ng-select [items]="tipoSociedade" [ngModelOptions]="{standalone: true}" [(ngModel)]="sociedade" bindLabel="descricao" bindValue="id" required
+                                    <ng-select [items]="tipoSociedade" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="sociedade" bindLabel="descricao" bindValue="id" required
                                         placeholder="Tipo de Sociedade"></ng-select>
                                 </div>
                             </div>

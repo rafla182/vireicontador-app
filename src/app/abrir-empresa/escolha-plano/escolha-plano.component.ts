@@ -18,14 +18,6 @@ export class EscolhaPlanoComponent implements OnInit {
 
     irParaPagamento(cliente) {
 
-        if (cliente == 0) {
-            this.model.plano.queroSerCliente = false;
-        } else {
-            this.model.plano.queroSerCliente = true;
-        }
-
-        console.log(this.model);
-
         this.trocarTela.emit('pagamento');
     }
 

@@ -34,20 +34,20 @@ export class AbrirEmpresaComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
 
             this.model.cliente = {};
-            this.model.plano = {};
-            this.model.fatura = {};
+            this.model.assinatura = {};
+            this.model.cartaoCredito = {};
 
             this.model.cliente.email = params.email;
 
             this.abrirEmpresaService.pegarPlano(this.model.cliente.email).subscribe(response => {
                 console.log(response);
-                this.model.plano.valorPlano = response.resultado.valor;
-                this.model.plano.descricao = response.resultado.descricao;
+                this.model.assinatura.valor = response.resultado.valor;
+                this.model.assinatura.descricao = response.resultado.descricao;
                 this.model.cliente.nome = response.resultado.nome;
 
                 var planoSelect = this.planos.find(p => p.nome.includes('Serviço Ouro'));
-                this.model.plano.id = planoSelect.id;
-                this.model.plano.produtoId = planoSelect.produtoId;
+                this.model.assinatura.id = planoSelect.id;
+                this.model.assinatura.produtoId = planoSelect.produtoId;
             });
         });
 

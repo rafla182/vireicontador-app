@@ -13,38 +13,61 @@ export class PagamentoComponent implements OnInit {
     @Input() model: any;
     termoAceito = false;
     constructor(private toastr: ToastrService, private abrirEmpresaService: AbrirEmpresaService) { }
-
+    loading = false;
     ngOnInit() {
-        this.model.plano.cartaoCredito = {
-            numero: null,
-            cvv: null,
-            titularCartao: null,
-            vencimento: null
-        };
+
     }
 
     pagarAgora() {
-        this.model.fatura.tipoPagamento = 'credit_card';
+        this.model.assinatura.tipoPagamento = 'credit_card';
 
-        if (!this.termoAceito) {
-            this.toastr.error('É necessário aceitar o termo.');
-        }
-        this.salvar();
+        if (!this.verificar())
+            this.salvar();
+
     }
 
+    verificar() {
+
+        let validate = true;
+        var mes = parseInt(this.model.cartaoCredito.vencimento.substring(0, 1));
+
+        if (mes > 12) {
+            this.toastr.error('Mês de vencimento informado inválido.');
+            validate = false;
+        }
+        if (!this.termoAceito) {
+            this.toastr.error('É necessário aceitar o termo.');
+            validate = false;
+        }
+        return validate;
+
+    }
+    
     gerarBoleto() {
-        this.model.fatura.tipoPagamento = 'bank_slip';
+        this.model.assinatura.tipoPagamento = 'bank_slip';
+        if (!this.termoAceito) {
+            this.toastr.error('É necessário aceitar o termo.');
+        } else {
+
+        }
     }
 
     salvar() {
+        this.loading = true;
         console.log(this.model);
 
         var cliente = this.model.cliente;
-        var assinatura = this.model.plano;
-        var fatura = this.model.fatura;
+        var assinatura = this.model.assinatura;
+        var cartaoCredito = this.model.cartaoCredito;
 
-        this.abrirEmpresaService.salvar(cliente, assinatura, fatura).subscribe(arg =>
-            this.toastr.error('Cliente salvo com sucesso.')
+        this.abrirEmpresaService.salvar(cliente, assinatura, cartaoCredito).subscribe(response => {
+            this.toastr.success('Cliente salvo com sucesso.');
+            this.trocarTela.emit('sucesso');
+            if (this.model.tipoPagamento == 'bank_slip') {
+                window.open(response.bill, '_blank');
+            }
+            this.loading = false;
+        }
         );
     }
 }

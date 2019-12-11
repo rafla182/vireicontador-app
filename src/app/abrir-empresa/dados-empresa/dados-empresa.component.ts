@@ -37,9 +37,9 @@ export class DadosEmpresaComponent implements OnInit {
         this.tipoSociedade = [{ id: 1, descricao: 'Apenas eu' }, { id: 2, descricao: 'Sócio + 1' }, { id: 3, descricao: 'Sócio + 2' }]
         this.getCnae();
         this.model.cliente.atividadePrimaria = {
+            id: 0
         };
-        this.model.cliente.atividadeSecundaria = {
-        }
+        this.model.cliente.atividadeSecundaria = [];
     }
 
     irParaPlano() {
@@ -101,7 +101,12 @@ export class DadosEmpresaComponent implements OnInit {
     }
 
     adicionarSecundaria() {
-        this.model.cliente.atividadeSecundaria = this.cnaes.find(p => p.id === this.atividadeSecundariaChecked)
+        this.model.cliente.atividadeSecundaria.push(this.cnaes.find(p => p.id === this.atividadeSecundariaChecked));
         this.closeCnaeSecundaria();
+    }
+
+    removerAtividadeSecundaria(id) {
+        const index = this.model.cliente.atividadeSecundaria.findIndex(d => d.codigo === id);
+        this.model.cliente.atividadeSecundaria.splice(index, 1)
     }
 }

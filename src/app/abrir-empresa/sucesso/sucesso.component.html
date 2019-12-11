@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-info">
-                        <h4 class="card-title">Escolha o plano</h4>
-                        <p class="card-category">Por favor, escolha a melhor opção para sua empresa.</p>
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Sucesso</h4>
+                        <p class="card-category">Os dados foram salvos com sucesso.</p>
                     </div>
                     <div class="card-body">
                         <form>
@@ -13,30 +13,21 @@
                                 <div class="col-md-12 text-align">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h4 class="card-title">Abertura Grátis</h4>
+                                            <h4 class="card-title"></h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="contratar">
-                                                <h2>Quero ser cliente Virei Contador</h2>
+                                                <h2>Virei Contador</h2>
                                             </div>
                                             <div class="contratar">
-                                                <h1>ABERTURA GRÁTIS*</h1>
+                                                <h1>{{model.cliente.nome}}, obrigada pela sua assinatura.</h1>
                                             </div>
                                             <div class="contratar-texto">
                                                 <label class="text-success">
-                                                    * Para clientes que fizerem a contratação do plano de contabilidade
-                                                    por
-                                                    12 meses. Para concluir a contratação, há uma taxa de antecipação
-                                                    R$99,90 que retornará como créditos em suas primeiras mensalidades.
                                                 </label>
                                             </div>
                                             <div>
                                                 &nbsp;
-                                            </div>
-                                            <div class="contratar">
-                                                <button mat-raised-button class="btn btn-success"
-                                                    (click)="irParaPagamento(1)">CONTRATAR&nbsp;<i
-                                                        class="material-icons">arrow_forward</i></button>
                                             </div>
                                         </div>
                                     </div>

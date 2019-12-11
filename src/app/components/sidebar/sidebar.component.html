@@ -7,30 +7,39 @@
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
-        <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'plano' || tela == 'empresa' || tela == 'usuario')"
+        <li class="nav-item"
+            *ngIf="(tela == 'pagamento' || tela == 'plano' || tela == 'empresa' || tela == 'usuario') && tela != 'sucesso'"
             [ngClass]="{'active': tela == 'usuario'}">
             <a class="nav-link" (click)="trocarTelaProxima('usuario')">
                 <i class="material-icons">person</i>
                 <p>Dados Usuário</p>
             </a>
         </li>
-        <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'plano' || tela == 'empresa')"
+        <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'plano' || tela == 'empresa') && tela != 'sucesso'"
             [ngClass]="{'active': tela == 'empresa'}">
             <a class="nav-link" (click)="trocarTelaProxima('empresa')">
                 <i class="material-icons">home</i>
                 <p>Dados Empresa</p>
             </a>
         </li>
-        <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'plano')" [ngClass]="{'active': tela == 'plano'}">
+        <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'plano') && tela != 'sucesso'"
+            [ngClass]="{'active': tela == 'plano'}">
             <a class="nav-link" (click)="trocarTelaProxima('plano')">
                 <i class="material-icons">assignment</i>
                 <p>Escolha Plano</p>
             </a>
         </li>
-        <li class="nav-item" *ngIf="tela == 'pagamento'" [ngClass]="{'active': tela == 'pagamento'}">
+        <li class="nav-item" *ngIf="tela == 'pagamento' && tela != 'sucesso'"
+            [ngClass]="{'active': tela == 'pagamento'}">
             <a class="nav-link" (click)="trocarTelaProxima('pagamento')">
                 <i class="material-icons">attach_money</i>
                 <p>Pagamento</p>
+            </a>
+        </li>
+        <li class="nav-item" *ngIf="tela == 'sucesso'" [ngClass]="{'active': tela == 'sucesso'}">
+            <a class="nav-link">
+                <i class="material-icons">check</i>
+                <p>Sucesso</p>
             </a>
         </li>
     </ul>

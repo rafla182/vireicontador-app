@@ -35,6 +35,10 @@ import { MigrarDadosEmpresaComponent } from './migrar-empresa/migrar-dados-empre
 import { MigrarEscolhaPlanoComponent } from './migrar-empresa/migrar-escolha-plano/migrar-escolha-plano.component';
 import { MigrarEmpresaService } from './layouts/migrar-empresa/migrar-empresa.services';
 import { MigrarPagamentoComponent } from './migrar-empresa/migrar-pagamento/migrar-pagamento.component';
+import { EstadosService } from './core/services/estadocidade.service';
+import { SucessoComponent } from './abrir-empresa/sucesso/sucesso.component';
+import { NgxLoadingModule } from 'ngx-loading';
+
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -60,7 +64,8 @@ import { MigrarPagamentoComponent } from './migrar-empresa/migrar-pagamento/migr
         }),
         ModalModule,
         Ng2SearchPipeModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        NgxLoadingModule.forRoot({})
     ],
     declarations: [
         AppComponent,
@@ -71,6 +76,7 @@ import { MigrarPagamentoComponent } from './migrar-empresa/migrar-pagamento/migr
         DadosEmpresaComponent,
         EscolhaPlanoComponent,
         PagamentoComponent,
+        SucessoComponent,
         MigrarDadosUsuarioComponent,
         MigrarDadosEmpresaComponent,
         MigrarEscolhaPlanoComponent,
@@ -78,7 +84,7 @@ import { MigrarPagamentoComponent } from './migrar-empresa/migrar-pagamento/migr
         OnlyNumber
 
     ],
-    providers: [HttpService, AbrirEmpresaService, MigrarEmpresaService, LoadingService],
+    providers: [HttpService, AbrirEmpresaService, MigrarEmpresaService, LoadingService, EstadosService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,7 +23,7 @@ export class MigrarPagamentoComponent implements OnInit {
     }
 
     pagarAgora() {
-        this.model.tipoPagamento = 'cartaoCredito';
+        this.model.assinatura.tipoPagamento = 'credit_card';
        
         console.log(this.termoAceito);
         if (!this.termoAceito) {
@@ -33,7 +33,7 @@ export class MigrarPagamentoComponent implements OnInit {
     }
 
     gerarBoleto() {
-        this.model.tipoPagamento = 'boleto';
+        this.model.assinatura.tipoPagamento = 'bank_slip';
         console.log(this.model);
     }
 }

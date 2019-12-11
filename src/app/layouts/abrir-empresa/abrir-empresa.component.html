@@ -13,6 +13,8 @@
         </app-escolha-plano>
         <app-pagamento [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'pagamento'">
         </app-pagamento>
+        <app-sucesso [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'sucesso'">
+        </app-sucesso>
         <app-footer></app-footer>
     </div>
 </div>
