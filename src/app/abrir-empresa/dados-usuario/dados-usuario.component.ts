@@ -33,7 +33,6 @@ export class DadosUsuarioComponent implements OnInit {
         });
 
         console.log(this.estados);
-        this.model.cliente.empresaCidade = true;
     }
 
     irParaEmpresa() {

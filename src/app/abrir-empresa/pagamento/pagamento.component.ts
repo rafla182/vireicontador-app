@@ -21,7 +21,7 @@ export class PagamentoComponent implements OnInit {
     pagarAgora() {
         this.model.assinatura.tipoPagamento = 'credit_card';
 
-        if (!this.verificar())
+        if (this.verificar())
             this.salvar();
 
     }
@@ -29,7 +29,23 @@ export class PagamentoComponent implements OnInit {
     verificar() {
 
         let validate = true;
-        var mes = parseInt(this.model.cartaoCredito.vencimento.substring(0, 1));
+        if (this.model.cartaoCredito.vencimento) {
+            var mes = parseInt(this.model.cartaoCredito.vencimento.substring(0, 1));
+        }
+        else {
+            this.toastr.error('Mês de vencimento informado inválido.');
+            validate = false;
+        }
+
+        if (!this.model.cartaoCredito.cvv) {
+            this.toastr.error('Código de verificação informado inválido.');
+            validate = false;
+
+        }
+        if (!this.model.cartaoCredito.numero) {
+            this.toastr.error('Número do cartão informado inválido.');
+            validate = false;
+        }
 
         if (mes > 12) {
             this.toastr.error('Mês de vencimento informado inválido.');
@@ -48,7 +64,7 @@ export class PagamentoComponent implements OnInit {
         if (!this.termoAceito) {
             this.toastr.error('É necessário aceitar o termo.');
         } else {
-
+            this.salvar();
         }
     }
 
@@ -60,15 +76,18 @@ export class PagamentoComponent implements OnInit {
         var assinatura = this.model.assinatura;
         var cartaoCredito = this.model.cartaoCredito;
 
-        this.abrirEmpresaService.salvar(cliente, assinatura, cartaoCredito).subscribe(response => {
+        this.abrirEmpresaService.salvar(cliente, assinatura, cartaoCredito)
+        .subscribe(response => {
+            console.log(response);
             this.toastr.success('Cliente salvo com sucesso.');
             this.trocarTela.emit('sucesso');
-            if (this.model.tipoPagamento == 'bank_slip') {
-                window.open(response.bill, '_blank');
+            if (this.model.assinatura.tipoPagamento == 'bank_slip') {
+                window.open(response.bill.charges[0].print_url, '_blank');
             }
             this.loading = false;
         },
             error => {
+                this.loading = false;
                 this.toastr.error('Erro ao realizar a transação.');
             }
         );

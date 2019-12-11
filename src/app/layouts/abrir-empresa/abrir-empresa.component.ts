@@ -25,11 +25,7 @@ export class AbrirEmpresaComponent implements OnInit {
 
     ngOnInit() {
 
-        this.planos = [
-            { nome: 'Serviço Ouro', id: 11330, produtoId: 30897 },
-            // { nome: 'Serviço Ouro', id: 11330, produtoId: 30897 },
-            // { nome: 'Serviço Ouro', id: 11330, produtoId: 30897 }
-        ]
+        
 
         this.route.queryParams.subscribe(params => {
 
@@ -41,11 +37,20 @@ export class AbrirEmpresaComponent implements OnInit {
 
             this.abrirEmpresaService.pegarPlano(this.model.cliente.email).subscribe(response => {
                 console.log(response);
+
+                this.planos = [
+                    { nome: 'Serviço Ouro - R$ 119,99', id: 11330, produtoId: 30897 },
+                    { nome: 'Serviço Platina - R$ 229,99', id: 11495, produtoId: 33901 },
+                    // { nome: 'Serviço Ouro', id: 11330, produtoId: 30897 }
+                ];
+
+                console.log(this.model.assinatura.descricao);
+
                 this.model.assinatura.valor = response.resultado.valor;
                 this.model.assinatura.descricao = response.resultado.descricao;
                 this.model.cliente.nome = response.resultado.nome;
 
-                var planoSelect = this.planos.find(p => p.nome.includes('Serviço Ouro'));
+                var planoSelect = this.planos.find(p => p.nome.includes(this.model.assinatura.descricao));
                 this.model.assinatura.id = planoSelect.id;
                 this.model.assinatura.produtoId = planoSelect.produtoId;
             });

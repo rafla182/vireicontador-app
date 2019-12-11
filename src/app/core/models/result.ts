@@ -1,5 +1,5 @@
-export class Result {
-    public Code: number;
-    public Message: string;
-    public Result: any;
+export class HttpResult {
+    public sucesso: boolean;
+    public resultado: any;
+    public erros: Error[];
 }

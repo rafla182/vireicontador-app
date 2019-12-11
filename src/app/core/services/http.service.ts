@@ -4,11 +4,11 @@ import { Headers, Http, RequestOptions, Response, ResponseContentType } from '@a
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { LoadingService } from './loading.service';
-import { Result } from '../models/result';
 import { ToastrService } from 'ngx-toastr';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { DomainService } from './domain.service';
+import { HttpResult } from '../models/result';
 
 @Injectable()
 export class HttpService {
@@ -71,18 +71,11 @@ export class HttpService {
             .finally(() => this.stopLoading(useLoading));
     }
 
+    
     post(url, data, useLoading = true) {
         return this.postNoMap(url, data, useLoading)
             .timeout(120000)
-            .map(response => {
-                const result: Result = response.json();
-                if (result.Code < 0) {
-                    this.toastrService.error('Ocorreu algum erro!');
-                    this.router.navigateByUrl('/');
-                } else {
-                    return this.handleResponse(response);
-                }
-            })
+            .map(this.handleSuccess)
             .catch(error => this.handleError(error))
             .finally(() => this.stopLoading(useLoading));
     }
@@ -129,9 +122,11 @@ export class HttpService {
             .finally(() => this.stopLoading(useLoading));
     }
 
-    handleResponse(response: Response) {
-        const result: Result = response.json();
-        return result.Result || {};
+    handleSuccess(response: Response) {
+        //console.log('-- success --');
+        console.log(response);
+        let result: HttpResult = response.json();
+        return result.resultado || {};        
     }
 
     handleError(response: Response) {

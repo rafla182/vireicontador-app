@@ -18,7 +18,7 @@ export class MigrarDadosUsuarioComponent implements OnInit {
         private toastr: ToastrService) { }
 
     ngOnInit() {
-        this.model.empresaCidade = 'S';
+        this.model.empresaCidadeOpcao = 'S';
     }
 
     irParaEmpresa() {
