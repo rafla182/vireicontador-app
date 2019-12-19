@@ -16,6 +16,7 @@ export class EscolhaComponent implements OnInit {
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
     email: any;
+    loading = false;
     constructor(public location: Location, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {

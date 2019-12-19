@@ -10,6 +10,7 @@ export class MigrarDadosSociosComponent implements OnInit {
     @Output() trocarTela: EventEmitter<string> = new EventEmitter();
     @Input() model: any;
     sexoOp = [{ id: 1, descricao: 'Masculino' }, { id: 2, descricao: 'Feminino' }, { id: 3, descricao: 'Outros' }];
+    loading = false;
     constructor() { }
 
     ngOnInit() {
