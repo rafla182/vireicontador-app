@@ -1,4 +1,6 @@
 <div class="main-content">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+    </ngx-loading>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -12,8 +14,8 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="CNPJ" type="text" [(ngModel)]="model.cnpj"
-                                            (focusout)="pegarEmpresa()" #cnpjInput="ngModel" [cnpj]="model.cnpj"
+                                        <input matInput placeholder="CNPJ" type="text" [(ngModel)]="model.empresa.cnpj"
+                                            (focusout)="pegarEmpresa()" #cnpjInput="ngModel" [cnpj]="model.empresa.cnpj"
                                             mask="00.000.000/0000-00" required [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                     <div *ngIf="cnpjInput.invalid && (cnpjInput.dirty || cnpjInput.touched)">
@@ -21,39 +23,170 @@
                                         <div *ngIf="cnpjInput?.errors?.required">CNPJ Obrigatório.</div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-3" *ngIf="showPosCnpj">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Funcionários" type="text"  
+                                            OnlyNumber="true" [(ngModel)]="model.empresa.funcionarios"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3" *ngIf="showPosCnpj">
+                                    <ng-select [items]="regimesTributario" [ngModelOptions]="{standalone: true}"
+                                        (change)="escolherRegime()" [(ngModel)]="regimeTributario" bindLabel="descricao"
+                                        bindValue="id" required placeholder="Regime Tributário"></ng-select>
+
+                                </div>
+                                <div class="col-md-3" *ngIf="showPosCnpj">
+                                    <ng-select [items]="inscricaoEstadualOp" [(ngModel)]="inscricaoEstadual"
+                                        (change)="escolherInscricao()" bindLabel="descricao" bindValue="id" required
+                                        [ngModelOptions]="{standalone: true}" placeholder="Inscrição Estadual">
+                                    </ng-select>
+
+                                </div>
+
+                            </div>
+                            <div class="row" *ngIf="showPosCnpj">
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Regime Tributário" type="text"
-                                            [(ngModel)]="model.regimeTributario" required
+                                        <input matInput placeholder="Razão Social" type="text"
+                                            [(ngModel)]="model.empresa.razaoSocial" disabled required
                                             [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Funcionários" type="text" required
-                                            [(ngModel)]="model.funcionario" [ngModelOptions]="{standalone: true}">
+                                        <input matInput placeholder="Nome Fantasia" type="text"
+                                            [(ngModel)]="model.empresa.nomeFantasia" required
+                                            [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="showPosCnpj">
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="CEP" type="text" [(ngModel)]="model.empresa.cep"
+                                            required disabled mask="00000-000" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
 
+                            </div>
+                            <div class="row" *ngIf="showPosCnpj">
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Estado" type="text"
+                                            [(ngModel)]="model.empresa.estado" required disabled
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Cidade" type="text"
+                                            [(ngModel)]="model.empresa.cidade" disabled required
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Bairro" type="text"
+                                            [(ngModel)]="model.empresa.bairro" disabled required
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Logradouro" type="text" required disabled
+                                            [(ngModel)]="model.empresa.logradouro"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput required placeholder="Número" type="text" disabled
+                                            [(ngModel)]="model.empresa.numero" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="showPosCnpj">
+                                <div class="col-md-6">
+                                    <div>
+                                        <div class="card alert atividade">
+                                            <div class="card-header">
+                                                <h5 class="card-title"><strong>Atividades principal
+                                                    </strong>
+                                                </h5>
+                                                <hr />
+                                            </div>
+                                            <div class="card-body">
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h5>
+                                                                &nbsp;
+                                                                <strong>{{model.empresa.atividadePrimaria.codigo}}</strong>
+                                                                -
+                                                                {{model.empresa.atividadePrimaria.descricao}}
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div *ngIf="model.empresa.atividadesSecundarias.length > 0">
+                                        <div class="card alert atividade">
+                                            <div class="card-header">
+                                                <h5 class="card-title"><strong>Atividades secundárias</strong>
+                                                </h5>
+                                                <hr />
+                                            </div>
+                                            <div class="card-body">
+                                                <div>
+                                                    <div class="row"
+                                                        *ngFor="let item of model.empresa.atividadesSecundarias">
+                                                        <div class="col-md-12">
+                                                            <h5>
+                                                                &nbsp;
+                                                                <strong>{{item.codigo}}</strong>
+                                                                -
+                                                                {{item.descricao}}
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" *ngIf="showPosCnpj">
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox"
+                                                [ngModelOptions]="{standalone: true}" [(ngModel)]="termoAceitoMigrar">
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                            <label class="texto-contrato">DECLARO QUE AS INFORMAÇÕES ACIMA REPRESENTAM
+                                                FIELMENTE
+                                                AS INFORMAÇÕES CONTIDAS NO MEU CARTÃO CNPJ.</label>
+                                        </label>
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Razão Social" type="text" [(ngModel)]="model.nome"
-                                            required [ngModelOptions]="{standalone: true}">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Nome Fantasia" type="text"
-                                            [(ngModel)]="model.nomeFantasia" required
-                                            [ngModelOptions]="{standalone: true}">
-                                    </mat-form-field>
+                                <div class="col-md-12">
+                                    <button mat-raised-button (click)="irParaUsuario()"
+                                        class="btn btn-primary pull-left">VOLTAR</button>
+                                    <button mat-raised-button (click)="irParaPlano()"
+                                        class="btn btn-primary pull-right">PROSSEGUIR</button>
                                 </div>
                             </div>
-                            <button mat-raised-button (click)="irParaEmpresa()"
-                                class="btn btn-primary pull-right">PROSSEGUIR</button>
-                            <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>

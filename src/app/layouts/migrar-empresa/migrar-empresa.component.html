@@ -10,8 +10,15 @@
         </app-migrar-dados-usuario>
         <app-migrar-dados-empresa [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'empresa'">
         </app-migrar-dados-empresa>
-        <app-migrar-escolha-plano [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'plano'">
+        <app-migrar-dados-socios [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'socios'">
+        </app-migrar-dados-socios>
+        <!-- <app-migrar-escolha-plano [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'plano'">
         </app-migrar-escolha-plano>
+      -->
+        <app-migrar-pagamento [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'pagamento'">
+        </app-migrar-pagamento>
+        <app-sucesso [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'sucesso'">
+        </app-sucesso>
         <app-footer></app-footer>
     </div>
 </div>

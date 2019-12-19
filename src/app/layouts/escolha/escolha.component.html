@@ -1,0 +1,98 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="azure" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+        <app-sidebar (trocarTela)="trocarTelaProxima($event)" [tela]="tela"></app-sidebar>
+        <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+    </div>
+    <div class="main-panel">
+        <div class="main-content">
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+            </ngx-loading>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-info">
+                                <h4 class="card-title">Abertura ou Migração de Empresa?</h4>
+                                <p class="card-category">Escolha qual é o processo que deseja para sua empresa.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div>
+                                            <div class="card escolha">
+                                                <div class="card-header">
+                                                    <h5 class="card-title text-center"><strong>ABRA SUA EMPRESA
+
+                                                        </strong>
+                                                    </h5>
+                                                    <hr />
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row centro">
+                                                        <span class="text-center text-central">
+                                                            Grátis*
+                                                        </span>
+                                                    </div>
+                                                    <div class="row centro">
+                                                        <span class="text-center text-desc">
+                                                            Abra sua empresa gratuitamente, pagando apenas as taxas
+                                                            governamentais necessárias e contratando um de nossos
+                                                            planos.
+                                                        </span>
+                                                    </div>
+                                                    <div class="row centro">
+                                                        <button class="btn-primary btn-acao" (click)="abrir()"> ABRIR
+                                                        </button>
+                                                    </div>
+                                                    <div class="row centro">
+                                                        <span class="text-center">
+                                                            *Adesão de 1 ano em nossos planos e taxas do governo.
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>
+                                            <div class="card escolha">
+                                                <div class="card-header">
+                                                    <h5 class="card-title text-center"><strong>MIGRE SUA EMPRESA
+                                                        </strong>
+                                                    </h5>
+                                                    <hr />
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row centro">
+                                                        <span class="text-center text-central">
+                                                            R$ 99,99
+                                                        </span>
+                                                    </div>
+                                                    <div class="row centro">
+                                                        <span class="text-center text-desc">
+                                                            Fuja das contabilidades padrões e evolua conosco para um
+                                                            sistema contábil online, prático, simples e confiável!
+                                                        </span>
+                                                    </div>
+                                                    <div class="row centro">
+                                                        <button class="btn-primary btn-acao" (click)="migrar()"> MIGRAR
+                                                        </button>
+                                                    </div>
+                                                    <div class="row centro">
+                                                        <span class="text-center">
+                                                            *Valor da base de nosso plano personalizado.
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

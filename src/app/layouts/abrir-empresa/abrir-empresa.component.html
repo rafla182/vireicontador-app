@@ -4,6 +4,8 @@
         <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
     </div>
     <div class="main-panel">
+        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+        </ngx-loading>
         <app-navbar></app-navbar>
         <app-dados-usuario [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'usuario'">
         </app-dados-usuario>

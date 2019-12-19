@@ -121,6 +121,6 @@ export class NavbarComponent implements OnInit {
               return this.listTitles[item].title;
           }
       }
-      return 'Virei Contador';
+      return 'Virei Contador - Contabilidade simples e prática';
     }
 }

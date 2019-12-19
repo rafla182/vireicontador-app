@@ -1,4 +1,6 @@
 <div class="main-content">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+    </ngx-loading>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -9,12 +11,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>Rafaela, </h4>
+                                <h4>{{model.empresa.nome}}, </h4>
                                 <h5>Esse é o resumo do seu plano, falta apenas escolher o melhor meio de pagamento:</h5>
                             </div>
                             <div class="col-md-8">
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="profile">
+                                    <div class="tab-pane active" id="perfil">
                                         <table class="table">
                                             <tbody>
                                                 <tr>
@@ -23,11 +25,11 @@
                                                     </td>
                                                     <td class="td-actions text-right">
                                                         <div>
-                                                            <h4> Simples Serviço</h4>
+                                                            <h4>{{model.assinatura.descricao}}</h4>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>Valor do Plano Básico:
                                                     </td>
                                                     <td class="td-actions text-right">
@@ -40,12 +42,12 @@
                                                     <td class="td-actions text-right">
                                                         <div>R$0,00</div>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                                 <tr>
-                                                    <td>PAGAR AGORA (Antecipação):
+                                                    <td>PAGAR AGORA:
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <div>R$99,90</div>
+                                                        <div>{{model.assinatura.valor | currency:'BRL':true}}</div>
                                                     </td>
                                                 </tr>
                                                 <!-- <tr>
@@ -106,13 +108,14 @@
                                             <div class="col-md-6">
                                                 <mat-form-field class="example-full-width">
                                                     <input OnlyNumber="true" matInput placeholder="Nº Cartão"
-                                                        [(ngModel)]="model.cartaoCredito.numero" type="number">
+                                                        maxlength="16" [(ngModel)]="model.cartaoCredito.numero"
+                                                        type="number">
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-6">
                                                 <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="CVV" type="number"
-                                                        [(ngModel)]="model.cartaoCredito.cvv">
+                                                    <input OnlyNumber="true" matInput placeholder="CVV" type="text"
+                                                        maxlength="3" [(ngModel)]="model.cartaoCredito.cvv">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -125,8 +128,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <mat-form-field class="example-full-width">
-                                                    <input matInput placeholder="MM/AA" mask="00/00" type="number"
-                                                        [(ngModel)]="model.cartaoCredito.vencimento">
+                                                    <input matInput OnlyNumber="true" placeholder="MM/AA" mask="00/00"  
+                                                        type="text" [(ngModel)]="model.cartaoCredito.vencimento">
                                                 </mat-form-field>
                                             </div>
                                         </div>

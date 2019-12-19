@@ -18,7 +18,7 @@ export class DadosUsuarioComponent implements OnInit {
     cidade: any;
     estado: any;
     showEstado = false;
-
+    loading = false;
     constructor(private abrirEmpresaService: AbrirEmpresaService,
         private estadocidadeService: EstadosService,
         private formBuilder: FormBuilder,
@@ -31,8 +31,6 @@ export class DadosUsuarioComponent implements OnInit {
                 descricao: p.nome
             };
         });
-
-        console.log(this.estados);
     }
 
     irParaEmpresa() {
@@ -66,11 +64,13 @@ export class DadosUsuarioComponent implements OnInit {
     }
 
     pegarCep() {
+        this.loading = true;
         this.abrirEmpresaService.pegarCep(this.model.cliente.cep).subscribe(response => {
             this.model.cliente.estado = response.uf;
             this.model.cliente.cidade = response.localidade;
             this.model.cliente.bairro = response.bairro;
             this.model.cliente.logradouro = response.logradouro;
+            this.loading = false;
         });
     }
 

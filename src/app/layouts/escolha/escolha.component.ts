@@ -1,60 +1,28 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
+import { Component, OnInit, Input } from '@angular/core';
+import { Location, PopStateEvent } from '@angular/common';
 import 'rxjs/add/operator/filter';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
-import { AbrirEmpresaService } from './abrir-empresa.services';
 
 @Component({
-    selector: 'app-abrir-empresa',
-    templateUrl: './abrir-empresa.component.html',
-    styleUrls: ['./abrir-empresa.component.scss']
+    selector: 'app-escolha',
+    templateUrl: './escolha.component.html',
+    styleUrls: ['./escolha.component.sass']
 })
-export class AbrirEmpresaComponent implements OnInit {
+export class EscolhaComponent implements OnInit {
     private _router: Subscription;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
-
-    @Input() tela = 'usuario';
-    model: any = {};
-    planos: any = [];
-    loading = false;
-    constructor(public location: Location, private router: Router, private route: ActivatedRoute, private abrirEmpresaService: AbrirEmpresaService) { }
+    email: any;
+    constructor(public location: Location, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
 
         this.route.queryParams.subscribe(params => {
-
-            this.model.cliente = {};
-            this.model.assinatura = {};
-            this.model.cartaoCredito = {};
-
-            this.model.cliente.email = params.email;
-            this.loading = true;
-            this.abrirEmpresaService.pegarPlano(this.model.cliente.email).subscribe(response => {
-                console.log(response);
-
-                this.planos = [
-                    { nome: 'Serviço Ouro - R$ 119,99', id: 11330, produtoId: 30897 },
-                    { nome: 'Serviço Platina - R$ 229,99', id: 11495, produtoId: 33901 },
-                    // { nome: 'Serviço Ouro', id: 11330, produtoId: 30897 }
-                ];
-
-                console.log(this.model.assinatura.descricao);
-
-                this.model.assinatura.valor = response.resultado.valor;
-                this.model.assinatura.descricao = response.resultado.descricao;
-                this.model.cliente.nome = response.resultado.nome;
-
-                var planoSelect = this.planos.find(p => p.nome.includes(this.model.assinatura.descricao));
-                this.model.assinatura.id = planoSelect.id;
-                this.model.assinatura.produtoId = planoSelect.produtoId;
-
-                this.loading = false;
-            });
+            console.log(params);
+            this.email = params.email;
         });
 
         const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
@@ -166,7 +134,11 @@ export class AbrirEmpresaComponent implements OnInit {
         return bool;
     }
 
-    trocarTelaProxima(tela) {
-        this.tela = tela;
+    migrar() {
+        this.router.navigateByUrl('/migrar?email=' + this.email);
+    }
+
+    abrir() {
+        this.router.navigateByUrl('/abrir?email=' + this.email);
     }
 }

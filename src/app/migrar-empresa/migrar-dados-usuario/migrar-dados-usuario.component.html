@@ -1,4 +1,6 @@
 <div class="main-content">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+    </ngx-loading>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -12,14 +14,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Nome Completo" type="text" [(ngModel)]="model.nome"
+                                        <input matInput placeholder="Nome Completo" type="text" [(ngModel)]="model.empresa.nome"
                                             required [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="CPF" type="text" [(ngModel)]="model.cpf"
-                                            #cpfInput="ngModel" [cpf]="model.cpf" mask="000.000.000-99" required
+                                        <input matInput placeholder="CPF" type="text" [(ngModel)]="model.empresa.cpf"
+                                            #cpfInput="ngModel" [cpf]="model.empresa.cpf" mask="000.000.000-99" required
                                             [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                     <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)">
@@ -31,7 +33,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" name="email" id="email" [(ngModel)]="model.email"
+                                        <input matInput type="text" name="email" id="email" [(ngModel)]="model.empresa.email" disabled
                                             placeholder="Email" required email #email="ngModel">
                                     </mat-form-field>
                                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
@@ -46,14 +48,14 @@
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Telefone" type="text" mask="(00) 00000-0000"
-                                            required [(ngModel)]="model.telefone" [ngModelOptions]="{standalone: true}">
+                                            required [(ngModel)]="model.empresa.telefone" [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
 
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Telefone 2" type="text" mask="(00) 00000-0000"
-                                            required [(ngModel)]="model.telefone2"
+                                            required [(ngModel)]="model.empresa.telefone2"
                                             [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>

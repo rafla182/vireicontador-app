@@ -5,6 +5,7 @@ import { Router, NavigationEnd, NavigationStart, ActivatedRoute } from '@angular
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
+import { AbrirEmpresaService } from '../abrir-empresa/abrir-empresa.services';
 
 @Component({
     selector: 'app-migrar-empresa',
@@ -18,13 +19,43 @@ export class MigrarEmpresaComponent implements OnInit {
 
     @Input() tela = 'usuario';
     model: any = {};
-
-    constructor(public location: Location, private router: Router, private route: ActivatedRoute) { }
+    planos: any = [];
+    loading = false;
+    constructor(public location: Location, private router: Router, private route: ActivatedRoute, private abrirEmpresaService: AbrirEmpresaService) { }
 
     ngOnInit() {
 
+        this.model.empresa = {};
+        this.model.socios = [];
+        this.model.cartaoCredito = {};
+        this.model.assinatura = {};
+
         this.route.queryParams.subscribe(params => {
-            this.model.email = params.email;
+            this.model.empresa.email = params.email;
+            this.loading = true;
+
+            this.abrirEmpresaService.pegarPlano(this.model.empresa.email).subscribe(response => {
+                console.log(response);
+
+                this.planos = [
+                    { nome: 'Serviço Ouro - R$ 119,99', id: 11330, produtoId: 30897 },
+                    { nome: 'Serviço Platina - R$ 229,99', id: 11495, produtoId: 33901 },
+                    // { nome: 'Serviço Ouro', id: 11330, produtoId: 30897 }
+                ];
+
+                console.log(this.model.assinatura.descricao);
+
+                this.model.assinatura.valor = response.resultado.valor;
+                this.model.assinatura.descricao = response.resultado.descricao;
+                this.model.empresa.nome = response.resultado.nome;
+                this.model.empresa.funcionarios = response.resultado.funcionarios;
+
+                var planoSelect = this.planos.find(p => p.nome.includes(this.model.assinatura.descricao));
+                this.model.assinatura.id = planoSelect.id;
+                this.model.assinatura.produtoId = planoSelect.produtoId;
+
+                this.loading = false;
+            });
         });
 
         const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;

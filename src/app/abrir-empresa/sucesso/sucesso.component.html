@@ -20,7 +20,7 @@
                                                 <h2>Virei Contador</h2>
                                             </div>
                                             <div class="contratar">
-                                                <h1>{{model.cliente.nome}}, obrigada pela sua assinatura.</h1>
+                                                <h1>{{model.cliente ? model.cliente.nome : model.empresa.nome}}, obrigada pela sua assinatura.</h1>
                                             </div>
                                             <div class="contratar-texto">
                                                 <label class="text-success">

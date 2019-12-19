@@ -1,0 +1,98 @@
+<div class="main-content">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+    </ngx-loading>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Dados dos sócios</h4>
+                        <p class="card-category">Informe os dados dos sócios da empresa.</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row" *ngFor="let item of model.socios">
+                                <input type="hidden" id="item.id" />
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nome Completo" type="text" [(ngModel)]="item.nome"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="CPF" type="text" [(ngModel)]="item.cpf"
+                                            #cpfInput="ngModel" [cpf]="item.cpf" mask="000.000.000-99"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                    <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)">
+                                        <div *ngIf="cpfInput?.errors?.cpf">CPF inválido.</div>
+                                        <div *ngIf="cpfInput?.errors?.required">CPF Obrigatório.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput type="text" name="email" id="email" [(ngModel)]="item.email"
+                                            [ngModelOptions]="{standalone: true}" placeholder="Email" email
+                                            #email="ngModel">
+                                    </mat-form-field>
+                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+                                        <div *ngIf="email.errors.required">Email é obrigatório.</div>
+                                        <div *ngIf="email.errors.email">Email inválido.</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Percentual (%)" type="text" maxlength="3"
+                                            minlength="1" max="100" min="1" [(ngModel)]="item.percentual"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <ng-select [items]="item.sexoOp" [ngModelOptions]="{standalone: true}" 
+                                        [(ngModel)]="item.sexo" bindLabel="descricao" bindValue="id" placeholder="Sexo">
+                                    </ng-select>
+
+                                </div>
+                                <div class="col-md-1">
+
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" [ngModelOptions]="{standalone: true}"
+                                                type="checkbox" [(ngModel)]="item.administrador" checked>
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                            <label>Administrador</label>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-1" *ngIf="model.socios.length > 1">
+                                    <button (click)="removerSocio(item.id)" class="btn"> <i class="material-icons">delete</i></button>
+                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-info" (click)="adicionarSocio()"><i
+                                            class="material-icons">control_point</i>&nbsp; ADICIONAR SÓCIO</button>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <hr />
+                                <div class="col-md-12">
+                                    <button mat-raised-button (click)="irParaPagamento()"
+                                        class="btn btn-primary pull-right">PROSSEGUIR</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

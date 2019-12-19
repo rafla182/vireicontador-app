@@ -38,6 +38,8 @@ import { MigrarPagamentoComponent } from './migrar-empresa/migrar-pagamento/migr
 import { EstadosService } from './core/services/estadocidade.service';
 import { SucessoComponent } from './abrir-empresa/sucesso/sucesso.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { MigrarDadosSociosComponent } from './migrar-empresa/migrar-dados-socios/migrar-dados-socios.component';
+import { EscolhaComponent } from './layouts/escolha/escolha.component';
 
 @NgModule({
     imports: [
@@ -72,6 +74,7 @@ import { NgxLoadingModule } from 'ngx-loading';
         DashboardComponent,
         AbrirEmpresaComponent,
         MigrarEmpresaComponent,
+        EscolhaComponent,
         DadosUsuarioComponent,
         DadosEmpresaComponent,
         EscolhaPlanoComponent,
@@ -81,6 +84,7 @@ import { NgxLoadingModule } from 'ngx-loading';
         MigrarDadosEmpresaComponent,
         MigrarEscolhaPlanoComponent,
         MigrarPagamentoComponent,
+        MigrarDadosSociosComponent,
         OnlyNumber
 
     ],

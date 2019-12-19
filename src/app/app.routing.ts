@@ -4,10 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AbrirEmpresaComponent } from './layouts/abrir-empresa/abrir-empresa.component';
 import { MigrarEmpresaComponent } from './layouts/migrar-empresa/migrar-empresa.component';
+import { EscolhaComponent } from './layouts/escolha/escolha.component';
 
 const routes: Routes = [
     {
-        path: 'abertura',
+        path: 'abrir',
         component: AbrirEmpresaComponent,
         children: [{
             path: '',
@@ -20,6 +21,15 @@ const routes: Routes = [
         children: [{
             path: '',
             loadChildren: './layouts/migrar-empresa/migrar-empresa.module#MigrarEmpresaModule'
+        }]
+    }
+    ,
+    {
+        path: 'escolha',
+        component: EscolhaComponent,
+        children: [{
+            path: '',
+            loadChildren: './layouts/escolha/escolha.module#EscolhaModule'
         }]
     }
 ];

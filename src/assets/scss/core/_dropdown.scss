@@ -203,3 +203,11 @@
     transform: scale(1);
     top: 0;
 }
+.ng-select .ng-select-container {
+  min-height: 37.5px
+}
+
+.ng-select .ng-select-container .ng-value-container {
+  padding: 0;
+  border-top: 0.99em solid transparent;
+}

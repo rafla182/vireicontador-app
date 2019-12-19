@@ -130,7 +130,8 @@ export class HttpService {
     }
 
     handleError(response: Response) {
-        return Observable.throw(response || [{ message: 'Ocorreu algum erro.' }]);
+        let result: HttpResult = response.json();
+        return Observable.throw(result.erros || [{ message: 'Ocorreu algum erro.' }]);
     }
 
     startLoading(useLoading): any {

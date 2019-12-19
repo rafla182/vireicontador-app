@@ -16,12 +16,7 @@ export class MigrarEscolhaPlanoComponent implements OnInit {
     }
 
     irParaPagamento(cliente) {
-        console.log(cliente);
-        if (cliente == 0) {
-            this.model.cliente = false;
-        } else {
-            this.model.cliente = true;
-        }
+
         this.trocarTela.emit('pagamento');
     }
 

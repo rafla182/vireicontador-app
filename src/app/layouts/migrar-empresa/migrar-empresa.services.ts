@@ -6,9 +6,22 @@ export class MigrarEmpresaService {
 
     private pegarCNPJUrl: string = 'cnpj/';
 
+    private getCnaesUrl = 'cnaes';
+    private salvarUrl = 'salvar-migrar';
+    private pegarPLanoUrl = 'hash/';
+
+
     constructor(private httpService: HttpService) { }
 
     pegarCNPJ(numero) {
         return this.httpService.get(`${this.pegarCNPJUrl}${numero}`);
+    }
+
+    salvar(empresa, assinatura, cartaoCredito, socios) {
+        return this.httpService.post(`${this.salvarUrl}`, { empresa: empresa, assinatura: assinatura, cartao: cartaoCredito, socios: socios });
+    }
+
+    pegarPlano(email: any) {
+        return this.httpService.get(`${this.pegarPLanoUrl}${email}`);
     }
 }
