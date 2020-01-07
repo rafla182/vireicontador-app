@@ -24,6 +24,7 @@ export class MigrarDadosEmpresaComponent implements OnInit {
     regimeTributario: any;
     inscricaoEstadual: any;
     termoAceitoMigrar = false;
+    confirmar = false;
     @Input() model: any;
 
     @Output() trocarTela: EventEmitter<string> = new EventEmitter();
