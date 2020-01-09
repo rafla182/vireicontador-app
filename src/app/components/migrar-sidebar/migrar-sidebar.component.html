@@ -8,27 +8,27 @@
 <div class="sidebar-wrapper">
     <ul class="nav">
         <li class="nav-item"
-            *ngIf="(tela == 'pagamento' || tela == 'plano' || tela == 'socios'|| tela == 'empresa' || tela == 'usuario')"
+            *ngIf="(tela == 'pagamento' || tela == 'mes' || tela == 'socios'|| tela == 'empresa' || tela == 'usuario')" 
             [ngClass]="{'active': tela == 'usuario'}">
             <a class="nav-link" (click)="trocarTelaProxima('usuario')">
                 <i class="material-icons">person</i>
                 <p>Dados Usuário</p>
             </a>
         </li>
-        <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'plano' || tela == 'empresa' || tela == 'socios')"
+        <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'mes' || tela == 'empresa' || tela == 'socios')"
             [ngClass]="{'active': tela == 'empresa'}">
             <a class="nav-link" (click)="trocarTelaProxima('empresa')">
                 <i class="material-icons">home</i>
                 <p>Dados Empresa</p>
             </a>
         </li>
-        <!-- <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'plano' || tela == 'socios' )"
-            [ngClass]="{'active': tela == 'socios'}">
-            <a class="nav-link" (click)="trocarTelaProxima('socios')">
+        <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'mes' || tela == 'socios' )"
+            [ngClass]="{'active': tela == 'mes'}">
+            <a class="nav-link" (click)="trocarTelaProxima('mes')">
                 <i class="material-icons">assignment</i>
-                <p>Plano</p>
+                <p>Competência</p>
             </a>
-        </li> -->
+        </li>
         <li class="nav-item" *ngIf="(tela == 'pagamento' || tela == 'socios')" [ngClass]="{'active': tela == 'socios'}">
             <a class="nav-link" (click)="trocarTelaProxima('socios')">
                 <i class="material-icons">assignment</i>

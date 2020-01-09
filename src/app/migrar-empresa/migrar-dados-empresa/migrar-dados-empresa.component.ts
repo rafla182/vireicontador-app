@@ -22,9 +22,11 @@ export class MigrarDadosEmpresaComponent implements OnInit {
     regimesTributario = [];
     inscricaoEstadualOp = [];
     regimeTributario: any;
-    inscricaoEstadual: any;
+    inscricaoEstadual = 2;
     termoAceitoMigrar = false;
+    termoAceitoMigrar2 = false;
     confirmar = false;
+
     @Input() model: any;
 
     @Output() trocarTela: EventEmitter<string> = new EventEmitter();
@@ -78,7 +80,35 @@ export class MigrarDadosEmpresaComponent implements OnInit {
         }
     }
 
+    confirmarEmpresa() {
+
+        let validate = true;
+
+        if (!this.model.empresa.cnpj) {
+            this.toastr.error('CNPJ não preenchido.')
+            validate = false;
+        }
+        if (!this.model.empresa.nomeFantasia) {
+            this.toastr.error('Nome não preenchido.')
+            validate = false;
+        }
+        if (!this.termoAceitoMigrar) {
+            this.toastr.error('É necessário declarar a veracidade das informações.');
+            validate = false;
+        }
+        if (!this.regimeTributario) {
+            this.toastr.error('É necessário informar o Regime Tributário.');
+            validate = false;
+        }
+        if (validate) {
+            this.confirmar = true;
+        }
+
+    }
+
     pegarEmpresa() {
+
+
         if (this.model.empresa.cnpj) {
             this.loading = true;
 
@@ -90,7 +120,7 @@ export class MigrarDadosEmpresaComponent implements OnInit {
                 this.model.empresa.cidade = response.resultado.municipio;
                 this.model.empresa.bairro = response.resultado.bairro;
                 this.model.empresa.numero = response.resultado.numero;
-                this.model.empresa.logradouro = response.resultado.logradouro;  
+                this.model.empresa.logradouro = response.resultado.logradouro;
                 this.model.empresa.atividadePrimaria = response.resultado.atividadePrincipal.map(p => {
                     return {
                         codigo: p.code,

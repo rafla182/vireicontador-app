@@ -29,6 +29,7 @@ export class MigrarEmpresaComponent implements OnInit {
         this.model.socios = [];
         this.model.cartaoCredito = {};
         this.model.assinatura = {};
+        this.model.competencia = {};
 
         this.route.queryParams.subscribe(params => {
             this.model.empresa.email = params.email;

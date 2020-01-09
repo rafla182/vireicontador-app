@@ -1,8 +1,8 @@
 <div class="wrapper">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
         <app-migrar-sidebar (trocarTela)="trocarTelaProxima($event)" [tela]="tela">
-            </app-migrar-sidebar>
-            <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+        </app-migrar-sidebar>
+        <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
     </div>
     <div class="main-panel">
         <app-navbar></app-navbar>
@@ -15,6 +15,8 @@
         <!-- <app-migrar-escolha-plano [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'plano'">
         </app-migrar-escolha-plano>
       -->
+        <app-migrar-dados-mes [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'mes'">
+        </app-migrar-dados-mes>
         <app-migrar-pagamento [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'pagamento'">
         </app-migrar-pagamento>
         <app-sucesso [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'sucesso'">

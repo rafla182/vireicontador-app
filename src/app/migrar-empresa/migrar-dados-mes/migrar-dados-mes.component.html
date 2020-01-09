@@ -1,0 +1,68 @@
+<div class="main-content">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+    </ngx-loading>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Mês de competência</h4>
+                        <p class="card-category">Informe os dados do mês de competência.</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>
+                                        <strong>{{ model.empresa.nome }}</strong> , informe a partir de qual competência
+                                        nós ficaremos
+                                        responsáveis pela sua contabilidade:
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                &nbsp;
+                                &nbsp;
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <ng-select [items]="meses" [ngModelOptions]="{standalone: true}"
+                                        (change)="escolherMes()" [(ngModel)]="mes" bindLabel="descricao" bindValue="id"
+                                        required placeholder="Mês"></ng-select>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Ano" type="text" OnlyNumber="true" (change)="escolherAno()" maxlength="4" minlength="4"
+                                            [(ngModel)]="model.competencia.ano" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6" *ngIf="model.competencia.mes">
+                                    <h4>Conforme informado, seu atual contador será responsável pela contabilidade até o
+                                        fim
+                                        de <strong>{{ mesCalculadoDesc }}</strong>. A partir de
+                                        <strong>{{ model.competencia.mes}}</strong> nós
+                                        cuidaremos da sua contabilidade.
+
+                                        O primeiro faturamento é emitido no ato de sua contratação e a segunda
+                                        mensalidade
+                                        será cobrada em <strong> 10/{{ (mesCalculado > 9 ? mesCalculado : '0' + mesCalculado) }}/{{model.competencia.ano}}</strong>.
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <hr />
+                                <div class="col-md-12">
+                                    <button mat-raised-button (click)="irParaSocios()"
+                                        class="btn btn-primary pull-left">VOLTAR</button>
+                                    <button mat-raised-button (click)="irParaPagamento()"
+                                        class="btn btn-primary pull-right">PROSSEGUIR</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

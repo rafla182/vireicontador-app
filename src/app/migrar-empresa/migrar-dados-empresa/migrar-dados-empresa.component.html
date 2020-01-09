@@ -39,7 +39,8 @@
                                 </div>
                                 <div class="col-md-3" *ngIf="showPosCnpj">
                                     <ng-select [items]="inscricaoEstadualOp" [(ngModel)]="inscricaoEstadual"
-                                        (change)="escolherInscricao()" bindLabel="descricao" bindValue="id" required
+                                        [multiple]="false" multiple="false" (change)="escolherInscricao()"
+                                        bindLabel="descricao" bindValue="id" required
                                         [ngModelOptions]="{standalone: true}" placeholder="Inscrição Estadual">
                                     </ng-select>
                                 </div>
@@ -106,7 +107,7 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row" *ngIsf="showPosCnpj">
+                            <div class="row" *ngIf="showPosCnpj">
                                 <div class="col-md-6">
                                     <div>
                                         <div class="card alert atividade">
@@ -182,45 +183,71 @@
                                 <div class="col-md-12">
                                     <button mat-raised-button (click)="irParaUsuario()"
                                         class="btn btn-primary pull-left">VOLTAR</button>
-                                    <button mat-raised-button (click)="irParaPlano()"
+                                    <button mat-raised-button (click)="confirmarEmpresa()"
                                         class="btn btn-primary pull-right">PROSSEGUIR</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="card-body" *ngIf="confirmar">
-                        <div class="row">
-                            <div>
-                                <strong>CNPJ: </strong> {{model.empresa.cnpj}}
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br>
+                                </div>
                             </div>
-                            <div>
-                                <strong>Razão Social (Nome da Empresa): </strong> {{model.empresa.cnpj}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>
+                                        <strong>{{model.empresa.razaoSocial}} </strong>, leia atentamente o termo abaixo
+                                        e
+                                        prossiga com a contratação somente se estiver de acordo:
+                                    </h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card alert alert-success">
+                                        <strong> Sua empresa <label style="color:red;"
+                                                *ngIf="regimeTributario != 3">não</label> é optante
+                                            pelo
+                                            SIMPLES NACIONAL. Para prosseguir com a contratação, você
+                                            deve confirmar que sua empresa está no regime
+                                            {{ model.empresa.regimeTributario}}.</strong>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <strong>Endereço: </strong> {{model.empresa.cnpj}}
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="col-md-12">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="termoAceitoMigrar2">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                                <label class="texto-contrato">DECLARO QUE MINHA EMPRESA POSSUI REGIME DE
+                                                    COMPETÊNCIA.</label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <strong>Cidade/UF: </strong> {{model.empresa.cnpj}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button mat-raised-button (click)="confirmar = false"
+                                        class="btn btn-primary pull-left">VOLTAR</button>
+                                    <button mat-raised-button (click)="irParaPlano()"
+                                        class="btn btn-primary pull-right">Sou
+                                        {{model.empresa.regimeTributario}}, quero
+                                        prosseguir</button>
+                                </div>
                             </div>
-                            <div>
-                                <strong>atividade Principal: </strong> {{model.empresa.cnpj}}
-                            </div>
-                            <div>
-                                <strong>atividade Secundária: </strong> {{model.empresa.cnpj}}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button mat-raised-button (click)="irParaUsuario()"
-                                    class="btn btn-primary pull-left">VOLTAR</button>
-                                <button mat-raised-button (click)="irParaPlano()"
-                                    class="btn btn-primary pull-right">PROSSEGUIR</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>
-
     </div>
 </div>

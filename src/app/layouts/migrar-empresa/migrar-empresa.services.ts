@@ -17,8 +17,8 @@ export class MigrarEmpresaService {
         return this.httpService.get(`${this.pegarCNPJUrl}${numero}`);
     }
 
-    salvar(empresa, assinatura, cartaoCredito, socios) {
-        return this.httpService.post(`${this.salvarUrl}`, { empresa: empresa, assinatura: assinatura, cartao: cartaoCredito, socios: socios });
+    salvar(empresa, assinatura, cartaoCredito, socios, competencia) {
+        return this.httpService.post(`${this.salvarUrl}`, { empresa: empresa, assinatura: assinatura, cartao: cartaoCredito, socios: socios, competencia: competencia });
     }
 
     pegarPlano(email: any) {

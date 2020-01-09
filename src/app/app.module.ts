@@ -40,6 +40,7 @@ import { SucessoComponent } from './abrir-empresa/sucesso/sucesso.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MigrarDadosSociosComponent } from './migrar-empresa/migrar-dados-socios/migrar-dados-socios.component';
 import { EscolhaComponent } from './layouts/escolha/escolha.component';
+import { MigrarDadosMesComponent } from './migrar-empresa/migrar-dados-mes/migrar-dados-mes.component';
 
 @NgModule({
     imports: [
@@ -85,6 +86,7 @@ import { EscolhaComponent } from './layouts/escolha/escolha.component';
         MigrarEscolhaPlanoComponent,
         MigrarPagamentoComponent,
         MigrarDadosSociosComponent,
+        MigrarDadosMesComponent,
         OnlyNumber
 
     ],

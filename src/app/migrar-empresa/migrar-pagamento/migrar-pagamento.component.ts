@@ -78,7 +78,7 @@ export class MigrarPagamentoComponent implements OnInit {
         var empresa = this.model.empresa;
         var assinatura = this.model.assinatura;
         var cartaoCredito = this.model.cartaoCredito;
-
+        var competencia = this.model.competencia;
         console.log(empresa);
         console.log(assinatura);
         console.log(cartaoCredito);
@@ -97,7 +97,7 @@ export class MigrarPagamentoComponent implements OnInit {
 
         console.log(socios);
 
-        this.migrarEmpresaService.salvar(empresa, assinatura, cartaoCredito, socios)
+        this.migrarEmpresaService.salvar(empresa, assinatura, cartaoCredito, socios, competencia)
             .subscribe(response => {
                 console.log(response);
                 this.toastr.success('Cliente salvo com sucesso.');
