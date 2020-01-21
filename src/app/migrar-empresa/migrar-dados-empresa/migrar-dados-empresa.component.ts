@@ -56,10 +56,6 @@ export class MigrarDadosEmpresaComponent implements OnInit {
             this.toastr.error('CNPJ não preenchido.')
             validate = false;
         }
-        if (!this.model.empresa.nomeFantasia) {
-            this.toastr.error('Nome não preenchido.')
-            validate = false;
-        }
         if (!this.termoAceitoMigrar) {
             this.toastr.error('É necessário declarar a veracidade das informações.');
             validate = false;
@@ -86,10 +82,6 @@ export class MigrarDadosEmpresaComponent implements OnInit {
 
         if (!this.model.empresa.cnpj) {
             this.toastr.error('CNPJ não preenchido.')
-            validate = false;
-        }
-        if (!this.model.empresa.nomeFantasia) {
-            this.toastr.error('Nome não preenchido.')
             validate = false;
         }
         if (!this.termoAceitoMigrar) {

@@ -36,8 +36,6 @@ export class MigrarDadosSociosComponent implements OnInit {
     }
 
     removerSocio(id) {
-        console.log(id);
-        console.log(this.model.socios);
         let index = this.model.socios.findIndex(d => d.id === id);
         this.model.socios.splice(index, 1)
     }

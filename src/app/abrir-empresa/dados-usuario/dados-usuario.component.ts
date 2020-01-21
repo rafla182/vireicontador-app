@@ -100,4 +100,5 @@ export class DadosUsuarioComponent implements OnInit {
     selecionarCidade(event){
         this.model.cliente.empresaCidade = event.descricao;
     }
+
 }

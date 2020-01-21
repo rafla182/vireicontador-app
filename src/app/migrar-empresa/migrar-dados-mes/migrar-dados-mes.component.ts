@@ -43,7 +43,7 @@ export class MigrarDadosMesComponent implements OnInit {
     escolherMes() {
         console.log(this.mes);
         this.model.competencia.mes = this.meses.find(p => p.id == this.mes).descricao;
-        this.mesCalculadoDesc = this.meses.find(p => p.id == (this.mes - 1)).descricao;
+        this.mesCalculadoDesc = this.model.competencia.mes == 'Janeiro' ? 'Dezembro' : this.meses.find(p => p.id == (this.mes - 1)).descricao;
         this.mesCalculado = this.mes + 1;
     }
 

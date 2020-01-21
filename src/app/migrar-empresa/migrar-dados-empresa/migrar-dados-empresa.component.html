@@ -31,20 +31,26 @@
                                             [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3" *ngIf="showPosCnpj">
+                                <div class="col-md-2" *ngIf="showPosCnpj">
                                     <ng-select [items]="regimesTributario" [ngModelOptions]="{standalone: true}"
                                         (change)="escolherRegime()" [(ngModel)]="regimeTributario" bindLabel="descricao"
                                         bindValue="id" required placeholder="Regime Tributário"></ng-select>
 
                                 </div>
-                                <div class="col-md-3" *ngIf="showPosCnpj">
+                                <div class="col-md-2" *ngIf="showPosCnpj">
                                     <ng-select [items]="inscricaoEstadualOp" [(ngModel)]="inscricaoEstadual"
                                         [multiple]="false" multiple="false" (change)="escolherInscricao()"
                                         bindLabel="descricao" bindValue="id" required
                                         [ngModelOptions]="{standalone: true}" placeholder="Inscrição Estadual">
                                     </ng-select>
                                 </div>
-
+                                <div class="col-md-2" *ngIf="showPosCnpj && model.empresa.inscricaoEstadual">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nº Inscrição Estadual" type="text"
+                                            OnlyNumber="true" [(ngModel)]="model.empresa.inscricaoEstadualNumero"
+                                            [ngModelOptions]="{standalone: true}" />
+                                    </mat-form-field>
+                                </div>
                             </div>
                             <div class="row" *ngIf="showPosCnpj">
                                 <div class="col-md-3">
@@ -57,7 +63,7 @@
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Nome Fantasia" type="text"
-                                            [(ngModel)]="model.empresa.nomeFantasia" required
+                                            [(ngModel)]="model.empresa.nomeFantasia"
                                             [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>

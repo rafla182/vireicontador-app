@@ -37,10 +37,12 @@ import { MigrarEmpresaService } from './layouts/migrar-empresa/migrar-empresa.se
 import { MigrarPagamentoComponent } from './migrar-empresa/migrar-pagamento/migrar-pagamento.component';
 import { EstadosService } from './core/services/estadocidade.service';
 import { SucessoComponent } from './abrir-empresa/sucesso/sucesso.component';
+import { ContratoComponent } from './abrir-empresa/contrato/contrato.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MigrarDadosSociosComponent } from './migrar-empresa/migrar-dados-socios/migrar-dados-socios.component';
 import { EscolhaComponent } from './layouts/escolha/escolha.component';
 import { MigrarDadosMesComponent } from './migrar-empresa/migrar-dados-mes/migrar-dados-mes.component';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 @NgModule({
     imports: [
@@ -68,7 +70,8 @@ import { MigrarDadosMesComponent } from './migrar-empresa/migrar-dados-mes/migra
         ModalModule,
         Ng2SearchPipeModule,
         ToastrModule.forRoot(),
-        NgxLoadingModule.forRoot({})
+        NgxLoadingModule.forRoot({}),
+        SignaturePadModule 
     ],
     declarations: [
         AppComponent,
@@ -76,6 +79,7 @@ import { MigrarDadosMesComponent } from './migrar-empresa/migrar-dados-mes/migra
         AbrirEmpresaComponent,
         MigrarEmpresaComponent,
         EscolhaComponent,
+        ContratoComponent,
         DadosUsuarioComponent,
         DadosEmpresaComponent,
         EscolhaPlanoComponent,
