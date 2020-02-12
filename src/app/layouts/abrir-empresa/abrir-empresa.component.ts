@@ -27,7 +27,7 @@ export class AbrirEmpresaComponent implements OnInit {
     ngOnInit() {
 
         this.route.queryParams.subscribe(params => {
-
+            
             this.model.cliente = {};
             this.model.assinatura = {};
             this.model.cartaoCredito = {};
