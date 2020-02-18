@@ -8,7 +8,7 @@ export class DomainService {
     get(): any {
 
         const domains = [
-            { url: 'localhost', api: 'https://app-vireicontador.azurewebsites.net/api/' },
+            { url: 'localhost', api: 'http://localhost:12345/api/' },
             { url: 'vireicontador-app.azurewebsites.net', api: 'https://app-vireicontador.azurewebsites.net/api/' },
             { url: 'app.vireicontador.com.br', api: 'https://app-vireicontador.azurewebsites.net/api/' }
         ];
