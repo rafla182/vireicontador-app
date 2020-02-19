@@ -1,4 +1,5 @@
 <div class="main-content">
+   
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -365,7 +366,7 @@
                                             vigente
                                             à época, além dos valores previstos nas Cláusulas 5.2 acima.
                                         </div>
-                                        <div>
+                                        <div class="html2pdf__page-break">
                                             <br><br>6 – VALORES E FORMAS DE PAGAMENTO
                                             <br><br>6.1. A <strong>CONTRATANTE</strong> pagará pelo serviço da
                                             <strong>CONTRATADA</strong> o valor definido na
@@ -401,6 +402,8 @@
                                             de
                                             valores adicionais conforme previsto nas Cláusulas 6.2, 6.6 e 6.7 deste
                                             Contrato.
+                                        </div>
+                                        <div>
                                             <br><br>6.4 – A <strong>VIREICONTADOR</strong> emitirá mensalmente à
                                             <strong>CONTRATANTE</strong> uma
                                             nota fiscal com a
@@ -744,7 +747,8 @@
                                             este
                                             cumprir as
                                             formalidades do Distrato, de acordo com artigos 7º do Código de Ética
-                                            Profissional do Contador.
+                                            Profissional do Contador.</div>
+                                        <div class="html2pdf__page-break">
                                             <br><br>10.3 - As eventuais multas decorrentes da entrega de declarações
                                             fora
                                             do prazo
@@ -753,10 +757,12 @@
                                             dos serviços por parte da <strong>CONTRATADA</strong>, serão de
                                             responsabilidade
                                             desta.
+                                        </div>
+                                        <div>
                                             <br><br>10.4 - A <strong>CONTRATADA</strong> será isenta do pagamento da
                                             multa
-                                            prevista na Cláusula
-                                            <br><br> 10.3 acima, caso a mesma seja decorrente de atraso na entrega de
+                                            prevista na Cláusula 10.3 acima, caso a mesma seja decorrente de atraso na
+                                            entrega de
                                             documentos e
                                             declarações por parte da <strong>CONTRATANTE</strong> ou entidades e pessoas
                                             externas que não
@@ -794,7 +800,7 @@
                                             <br>
                                             Vila Velha, ES, {{date | date: 'dd/MM/yyyy'}} <br>
                                             <br>
-                                            <strong>VIREICONTADOR</strong> Servicos contábeis
+                                            <strong>VIREICONTADOR</strong> Serviços contábeis
                                             <br><br> Cr. Ney Ferreira Fraga
                                         </div>
                                     </div>
@@ -802,7 +808,7 @@
                                         <br>
                                         <br>
                                         <div class="col-md-12">
-                                            <br>Assine aqui:
+                                            <br>Assine aqui digitalmente:
                                         </div>
                                         <br />
                                         <div class="col-md-12">
@@ -814,6 +820,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <br />
+
+                                        <div class="col-md-12">
+                                            <div class=" text-right">
+                                                <h4>Nome: <strong>{{model.cliente.nome}}</strong> </h4>
+                                                <h4>CPF: <strong>{{model.cliente.cpf}}</strong></h4>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class=" text-right">
                                                 <button mat-raised-button (click)="salvar()"
@@ -823,10 +837,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <br />
-                                        <span>{{model.cliente.nome}}</span>
-                                    </div>
+
                                 </div>
 
                                 <br />

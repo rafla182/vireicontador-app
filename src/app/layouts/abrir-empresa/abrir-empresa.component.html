@@ -1,11 +1,11 @@
+<ngx-loading [show]="show" [config]="{ backdropBorderRadius: '3px' }">
+</ngx-loading>
 <div class="wrapper">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
         <app-sidebar (trocarTela)="trocarTelaProxima($event)" [tela]="tela"></app-sidebar>
         <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
     </div>
     <div class="main-panel">
-        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
-        </ngx-loading>
         <app-navbar></app-navbar>
         <app-dados-usuario [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'usuario'">
         </app-dados-usuario>
@@ -15,10 +15,11 @@
         </app-escolha-plano>
         <app-pagamento [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'pagamento'">
         </app-pagamento>
-        <app-sucesso [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'sucesso'">
-        </app-sucesso>
-        <app-contrato [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'contrato'">
+        <app-contrato (loadingSet)="loadingSetProx($event)" [model]="model" (trocarTela)="trocarTelaProxima($event)"
+            *ngIf="tela == 'contrato'">
         </app-contrato>
+        <app-sucesso (loadingSet)="loadingSetProx($event)" [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'sucesso'">
+        </app-sucesso>
         <app-footer></app-footer>
     </div>
 </div>

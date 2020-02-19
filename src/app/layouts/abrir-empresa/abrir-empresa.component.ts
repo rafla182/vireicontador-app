@@ -19,21 +19,24 @@ export class AbrirEmpresaComponent implements OnInit {
     private yScrollStack: number[] = [];
 
     @Input() tela = 'usuario';
+
     model: any = {};
     planos: any = [];
-    loading = false;
+    show = false;
+
     constructor(public location: Location, private router: Router, private route: ActivatedRoute, private abrirEmpresaService: AbrirEmpresaService) { }
 
     ngOnInit() {
 
         this.route.queryParams.subscribe(params => {
-            
+
             this.model.cliente = {};
             this.model.assinatura = {};
             this.model.cartaoCredito = {};
 
+            this.show = true;
+
             this.model.cliente.email = params.email;
-            this.loading = true;
             this.abrirEmpresaService.pegarPlano(this.model.cliente.email).subscribe(response => {
                 console.log(response);
 
@@ -58,8 +61,7 @@ export class AbrirEmpresaComponent implements OnInit {
                 var planoSelect = this.planos.find(p => p.nome.includes(this.model.assinatura.descricao));
                 this.model.assinatura.id = planoSelect.id;
                 this.model.assinatura.produtoId = planoSelect.produtoId;
-
-                this.loading = false;
+                this.show = false;
             });
         });
 
@@ -175,4 +177,10 @@ export class AbrirEmpresaComponent implements OnInit {
     trocarTelaProxima(tela) {
         this.tela = tela;
     }
+
+    loadingSetProx(loading) {
+        var isTrueSet = (loading === 'true');
+        this.show = isTrueSet;
+    }
+
 }

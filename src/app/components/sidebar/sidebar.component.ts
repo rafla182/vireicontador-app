@@ -43,4 +43,5 @@ export class SidebarComponent implements OnInit {
     trocarTelaProxima(tela) {
         this.trocarTela.emit(tela);
     }
+
 }

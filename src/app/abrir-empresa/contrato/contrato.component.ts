@@ -14,20 +14,22 @@ import { AbrirEmpresaService } from 'app/layouts/abrir-empresa/abrir-empresa.ser
     styleUrls: ['./contrato.component.css']
 })
 export class ContratoComponent implements OnInit, AfterViewInit {
-    @Input() tela;
+
     @Output() trocarTela: EventEmitter<string> = new EventEmitter();
     @Input() model: any;
+
     @ViewChild(SignaturePad, { static: true }) signaturePad: SignaturePad;
     @ViewChild('content', { static: true }) content: ElementRef;
 
+    @Output() loadingSet: EventEmitter<string> = new EventEmitter();
+
     date: any;
-    loading = false;
     signaturePadOptions = {
-        minWidth: 1,
         penColor: 'rgb(66,133,244)',
         dotSize: 0.1,
         canvasWidth: 800,
-        canvasHeight: 150
+        canvasHeight: 150,
+        minWidth: 2
     };
 
     constructor(private toastr: ToastrService,
@@ -44,29 +46,24 @@ export class ContratoComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         // this.signaturePad is now available
-        this.signaturePad.set('minWidth', 1); // set szimek/signature_pad options at runtime
+        this.signaturePad.set('minWidth', 2); // set szimek/signature_pad options at runtime
         this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
 
     }
 
     drawComplete() {
-        const base64 = this.signaturePad.fromDataURL('imag/png', 1);
-        // will be notified of szimek/signature_pad's onEnd event
-        console.log(this.signaturePad.toDataURL());
     }
 
     drawStart() {
-        // will be notified of szimek/signature_pad's onBegin event
-        console.log('begin drawing');
     }
 
     drawClear() {
         this.signaturePad.clear();
     }
     send(pdfAsString) {
+
         this.abrirEmpresaService.sendContrato(this.base64ArrayBuffer(pdfAsString), this.model.cliente)
             .subscribe(arg => {
-                this.toastr.success('O contrato assinado foi enviado por e-mail.');
                 this.trocarTela.emit('sucesso');
             }
             );
@@ -126,7 +123,7 @@ export class ContratoComponent implements OnInit, AfterViewInit {
     }
 
     salvar() {
-
+        this.loadingSet.emit('true');
         if (!this.signaturePad.isEmpty()) {
 
             //const div = document.getElementById('content');
@@ -142,7 +139,8 @@ export class ContratoComponent implements OnInit, AfterViewInit {
 
             html2pdf().from(element).set(opt).output('arraybuffer').then(
                 (pdfAsString) => {
-                    console.log(pdfAsString);
+
+
                     this.send(pdfAsString);
                 });
             // New Promise-based usage:
