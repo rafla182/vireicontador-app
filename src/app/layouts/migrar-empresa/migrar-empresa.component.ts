@@ -17,7 +17,7 @@ export class MigrarEmpresaComponent implements OnInit {
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
 
-    @Input() tela = 'contrato';
+    @Input() tela = 'usuario';
     model: any = {};
     planos: any = [];
     show = false;
