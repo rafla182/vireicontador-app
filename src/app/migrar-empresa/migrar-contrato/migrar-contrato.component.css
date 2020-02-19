@@ -1,0 +1,13 @@
+.m-signature-pad {
+    position: relative;
+    font-size: 10px;
+    width: auto;
+    height: 150px;
+    border: 2px dotted #000;
+}
+.contrato
+{
+    font-size: 12px;
+    color: black;
+    text-align: justify;
+}

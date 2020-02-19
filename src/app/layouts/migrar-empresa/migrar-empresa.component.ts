@@ -17,10 +17,10 @@ export class MigrarEmpresaComponent implements OnInit {
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
 
-    @Input() tela = 'usuario';
+    @Input() tela = 'contrato';
     model: any = {};
     planos: any = [];
-    loading = false;
+    show = false;
     constructor(public location: Location, private router: Router, private route: ActivatedRoute, private abrirEmpresaService: AbrirEmpresaService) { }
 
     ngOnInit() {
@@ -33,7 +33,7 @@ export class MigrarEmpresaComponent implements OnInit {
 
         this.route.queryParams.subscribe(params => {
             this.model.empresa.email = params.email;
-            this.loading = true;
+            this.show = true;
 
             this.abrirEmpresaService.pegarPlano(this.model.empresa.email).subscribe(response => {
                 console.log(response);
@@ -61,7 +61,7 @@ export class MigrarEmpresaComponent implements OnInit {
                 this.model.assinatura.id = planoSelect.id;
                 this.model.assinatura.produtoId = planoSelect.produtoId;
 
-                this.loading = false;
+                this.show = false;
             });
         });
 
@@ -176,5 +176,10 @@ export class MigrarEmpresaComponent implements OnInit {
 
     trocarTelaProxima(tela) {
         this.tela = tela;
+    }
+
+    loadingSetProx(loading) {
+        var isTrueSet = (loading === 'true');
+        this.show = isTrueSet;
     }
 }

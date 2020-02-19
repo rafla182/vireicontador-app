@@ -43,6 +43,8 @@ import { MigrarDadosSociosComponent } from './migrar-empresa/migrar-dados-socios
 import { EscolhaComponent } from './layouts/escolha/escolha.component';
 import { MigrarDadosMesComponent } from './migrar-empresa/migrar-dados-mes/migrar-dados-mes.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
+import { MigrarSucessoComponent } from './migrar-empresa/migrar-sucesso/migrar-sucesso.component';
+import { MigrarContratoComponent } from './migrar-empresa/migrar-contrato/migrar-contrato.component';
 
 @NgModule({
     imports: [
@@ -91,6 +93,8 @@ import { SignaturePadModule } from 'angular2-signaturepad';
         MigrarPagamentoComponent,
         MigrarDadosSociosComponent,
         MigrarDadosMesComponent,
+        MigrarSucessoComponent,
+        MigrarContratoComponent,
         OnlyNumber
 
     ],

@@ -1,3 +1,5 @@
+<ngx-loading [show]="show" [config]="{ backdropBorderRadius: '3px' }">
+</ngx-loading>
 <div class="wrapper">
     <div class="sidebar" data-color="azure" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
         <app-migrar-sidebar (trocarTela)="trocarTelaProxima($event)" [tela]="tela">
@@ -19,8 +21,11 @@
         </app-migrar-dados-mes>
         <app-migrar-pagamento [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'pagamento'">
         </app-migrar-pagamento>
-        <app-sucesso [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'sucesso'">
-        </app-sucesso>
+        <app-migrar-contrato (loadingSet)="loadingSetProx($event)" [model]="model"
+            (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'contrato'">
+        </app-migrar-contrato>
+        <app-migrar-sucesso  (loadingSet)="loadingSetProx($event)" [model]="model" (trocarTela)="trocarTelaProxima($event)" *ngIf="tela == 'migrar-sucesso'">
+        </app-migrar-sucesso>
         <app-footer></app-footer>
     </div>
 </div>

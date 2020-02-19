@@ -9,6 +9,7 @@ export class AbrirEmpresaService {
     private getCnaesUrl = 'cnaes';
     private salvarUrl = 'salvar';
     private contratorUrl = 'contrato';
+    private migrarcontratorUrl = 'migrar-contrato';
     private pegarPLanoUrl = 'hash/';
     constructor(private httpService: HttpService) { }
 
@@ -32,4 +33,9 @@ export class AbrirEmpresaService {
     sendContrato(contrato, cliente) {
         return this.httpService.post(`${this.contratorUrl}`, { contrato: contrato, cliente: cliente });
     }
+
+    sendMigrarContrato(contrato, empresa) {
+        return this.httpService.post(`${this.migrarcontratorUrl}`, { contrato: contrato, empresa: empresa });
+    }
+    
 }

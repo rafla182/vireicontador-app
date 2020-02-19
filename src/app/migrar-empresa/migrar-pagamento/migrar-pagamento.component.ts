@@ -101,7 +101,7 @@ export class MigrarPagamentoComponent implements OnInit {
             .subscribe(response => {
                 console.log(response);
                 this.toastr.success('Cliente salvo com sucesso.');
-                this.trocarTela.emit('sucesso');
+                this.trocarTela.emit('contrato');
                 if (this.model.assinatura.tipoPagamento == 'bank_slip') {
                     window.open(response.bill.charges[0].print_url, '_blank');
                 }
