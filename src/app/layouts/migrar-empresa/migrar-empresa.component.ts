@@ -39,8 +39,14 @@ export class MigrarEmpresaComponent implements OnInit {
                 console.log(response);
 
                 this.planos = [
-                    { nome: 'Serviço Ouro - R$ 119,99', id: 11330, produtoId: 30897 },
-                    { nome: 'Serviço Platina - R$ 229,99', id: 11495, produtoId: 33901 },
+                    { nome: 'Serviço Ouro - R$ 119,99', id: 145899, produtoId: 554689 },
+                    { nome: 'Serviço Platina - R$ 249,99', id: 145902, produtoId: 554691 },
+                    { nome: 'Serviço Diamante - R$ 359,99', id: 145903, produtoId: 554692 },
+                    { nome: 'Simples Varejista Diamante - R$ 359,99', id: 107099, produtoId: 447431 },
+                    { nome: 'Presumido - R$ 249,99', id: 25016, produtoId: 556237 },
+                    { nome: 'Igreja - R$ 249,99', id: 146435, produtoId: 556229 },
+                    { nome: 'MEI - R$ 99,99', id: 107829, produtoId: 460091 },
+                    // { nome: 'Serviço Ouro', id: 11330, produtoId: 30897 }
                     // { nome: 'Serviço Ouro', id: 11330, produtoId: 30897 }
                 ];
 
