@@ -82,7 +82,7 @@ export class PagamentoComponent implements OnInit {
             this.toastr.success('Cliente salvo com sucesso.');
             this.trocarTela.emit('contrato');
             if (this.model.assinatura.tipoPagamento == 'bank_slip') {
-                window.open(response.bill.charges[0].print_url, '_blank');
+                window.open(response.bill.charges[0].print_url, 'Boleto', "height=500,width=500");
             }
             this.loading = false;
         },
