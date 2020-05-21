@@ -13,42 +13,48 @@
                         <form>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
+                                    <mat-form-field>
                                         <input matInput placeholder="CNPJ" type="text" [(ngModel)]="model.empresa.cnpj"
-                                            (focusout)="pegarEmpresa()" #cnpjInput="ngModel" [cnpj]="model.empresa.cnpj"
-                                            mask="00.000.000/0000-00" required [ngModelOptions]="{standalone: true}">
+                                            #cnpjInput="ngModel" [cnpj]="model.empresa.cnpj" mask="00.000.000/0000-00"
+                                            required [ngModelOptions]="{standalone: true}">
+
                                     </mat-form-field>
                                     <div *ngIf="cnpjInput.invalid && (cnpjInput.dirty || cnpjInput.touched)">
                                         <div *ngIf="cnpjInput?.errors?.cpf">CNPJ inválido.</div>
-                                        <div *ngIf="cnpjInput?.errors?.required">CNPJ Obrigatório.</div>
+                                        <div *ngIf="cnpjInput?.errors?.required">O CNPJ é obrigatório.</div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-3" *ngIf="showPosCnpj">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Funcionários" type="text" OnlyNumber="true"
-                                            [(ngModel)]="model.empresa.funcionarios"
-                                            [ngModelOptions]="{standalone: true}">
-                                    </mat-form-field>
+                                <div class="col-md-4">
+                                    <button mat-mini-fab (click)="pegarEmpresa()" class="btn btn-basic"><i
+                                            class="material-icons">search</i></button>
                                 </div>
-                                <div class="col-md-2" *ngIf="showPosCnpj">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3" *ngIf="showPosCnpj">
                                     <ng-select [items]="regimesTributario" [ngModelOptions]="{standalone: true}"
                                         (change)="escolherRegime()" [(ngModel)]="regimeTributario" bindLabel="descricao"
                                         bindValue="id" required placeholder="Regime Tributário"></ng-select>
 
                                 </div>
-                                <div class="col-md-2" *ngIf="showPosCnpj">
+                                <div class="col-md-3" *ngIf="showPosCnpj">
                                     <ng-select [items]="inscricaoEstadualOp" [(ngModel)]="inscricaoEstadual"
                                         [multiple]="false" multiple="false" (change)="escolherInscricao()"
                                         bindLabel="descricao" bindValue="id" required
                                         [ngModelOptions]="{standalone: true}" placeholder="Inscrição Estadual">
                                     </ng-select>
                                 </div>
-                                <div class="col-md-2" *ngIf="showPosCnpj && model.empresa.inscricaoEstadual">
+                                <div class="col-md-3" *ngIf="showPosCnpj && model.empresa.inscricaoEstadual">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Nº Inscrição Estadual" type="text"
                                             OnlyNumber="true" [(ngModel)]="model.empresa.inscricaoEstadualNumero"
                                             [ngModelOptions]="{standalone: true}" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3" *ngIf="showPosCnpj">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Funcionários" type="text" OnlyNumber="true"
+                                            [(ngModel)]="model.empresa.funcionarios"
+                                            [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -185,14 +191,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button mat-raised-button (click)="irParaUsuario()"
-                                        class="btn btn-primary pull-left">VOLTAR</button>
-                                    <button mat-raised-button (click)="confirmarEmpresa()"
-                                        class="btn btn-primary pull-right">PROSSEGUIR</button>
-                                </div>
-                            </div>
+
                         </form>
                     </div>
                     <div class="card-body" *ngIf="confirmar">
@@ -239,20 +238,26 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button mat-raised-button (click)="confirmar = false"
-                                        class="btn btn-primary pull-left">VOLTAR</button>
-                                    <button mat-raised-button (click)="irParaPlano()"
-                                        class="btn btn-primary pull-right">Sou
-                                        {{model.empresa.regimeTributario}}, quero
-                                        prosseguir</button>
-                                </div>
-                            </div>
+
                         </form>
                     </div>
 
                 </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!confirmar">
+            <div class="col-md-12">
+                <button mat-raised-button (click)="irParaUsuario()" class="btn btn-primary pull-left">VOLTAR</button>
+                <button mat-raised-button (click)="confirmarEmpresa()"
+                    class="btn btn-primary pull-right">PROSSEGUIR</button>
+            </div>
+        </div>
+        <div class="row" *ngIf="confirmar">
+            <div class="col-md-12">
+                <button mat-raised-button (click)="confirmar = false" class="btn btn-primary pull-left">VOLTAR</button>
+                <button mat-raised-button (click)="irParaPlano()" class="btn btn-primary pull-right">Sou
+                    {{model.empresa.regimeTributario}}, quero
+                    prosseguir</button>
             </div>
         </div>
     </div>

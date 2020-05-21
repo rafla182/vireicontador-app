@@ -33,6 +33,12 @@ export class DadosUsuarioComponent implements OnInit {
         });
     }
 
+    phoneValidate(phone) {
+        var isValid = /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/.test(phone);
+        return isValid;
+    }
+
+
     irParaEmpresa() {
 
         let validate = true;
@@ -52,6 +58,15 @@ export class DadosUsuarioComponent implements OnInit {
             this.toastr.error('Telefone não preenchido.')
             validate = false;
         }
+        if (!this.phoneValidate(this.model.cliente.telefone)) {
+            this.toastr.error('Telefone inválido.')
+            validate = false;
+        }
+        if ((this.model.cliente.telefone == '00000000000') || (this.model.cliente.telefone == '11111111111') || (this.model.cliente.telefone == '22222222222') || (this.model.cliente.telefone == '33333333333') || (this.model.cliente.telefone == '44444444444') || (this.model.cliente.telefone == '55555555555') || (this.model.cliente.telefone == '66666666666') || (this.model.cliente.telefone == '77777777777') || (this.model.cliente.telefone == '88888888888') || (this.model.cliente.telefone == '99999999999')) {
+            this.toastr.error('Telefone inválido.')
+            validate = false;
+        }
+
         if (!this.model.cliente.cep || !this.model.cliente.estado
             || !this.model.cliente.cidade || !this.model.cliente.bairro || !this.model.cliente.logradouro || !this.model.cliente.numero) {
             this.toastr.error('Endereço não preenchido completo.')
@@ -81,7 +96,7 @@ export class DadosUsuarioComponent implements OnInit {
 
         } else {
             this.model.cliente.empresaEstado = '',
-            this.model.cliente.empresaCidade = '';
+                this.model.cliente.empresaCidade = '';
             this.showEstado = false;
         }
 
@@ -97,7 +112,7 @@ export class DadosUsuarioComponent implements OnInit {
         });
     }
 
-    selecionarCidade(event){
+    selecionarCidade(event) {
         this.model.cliente.empresaCidade = event.descricao;
     }
 

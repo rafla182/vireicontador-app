@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import {
     MatRadioButton, MatRadioGroup,
-    MatButtonModule, MatRippleModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTooltipModule
+    MatButtonModule, MatRippleModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTooltipModule, MatCheckboxModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { DadosUsuarioComponent } from './abrir-empresa/dados-usuario/dados-usuario.component';
@@ -60,6 +60,7 @@ import { MigrarContratoComponent } from './migrar-empresa/migrar-contrato/migrar
         AppRoutingModule,
         MatButtonModule,
         MatRippleModule,
+        MatCheckboxModule,
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
@@ -73,7 +74,8 @@ import { MigrarContratoComponent } from './migrar-empresa/migrar-contrato/migrar
         Ng2SearchPipeModule,
         ToastrModule.forRoot(),
         NgxLoadingModule.forRoot({}),
-        SignaturePadModule 
+        SignaturePadModule,
+        
     ],
     declarations: [
         AppComponent,

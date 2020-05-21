@@ -32,8 +32,9 @@
                                 </div>
                                 <div class="col-md-2">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Ano" type="text" OnlyNumber="true"  maxlength="4" minlength="4"
-                                            [(ngModel)]="model.competencia.ano" [ngModelOptions]="{standalone: true}">
+                                        <input matInput placeholder="Ano" type="text" OnlyNumber="true" maxlength="4"
+                                            minlength="4" [(ngModel)]="model.competencia.ano"
+                                            [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6" *ngIf="model.competencia.mes">
@@ -45,23 +46,24 @@
 
                                         O primeiro faturamento é emitido no ato de sua contratação e a segunda
                                         mensalidade
-                                        será cobrada em <strong> 10/{{ (mesCalculado > 9 ? mesCalculado : '0' + mesCalculado) }}/{{model.competencia.ano}}</strong>.
+                                        será cobrada em <strong>
+                                            10/{{ (mesCalculado > 9 ? mesCalculado : '0' + mesCalculado) }}/{{model.competencia.ano}}</strong>.
                                     </h4>
                                 </div>
                             </div>
-                            <div class="row">
-                                <hr />
-                                <div class="col-md-12">
-                                    <button mat-raised-button (click)="irParaSocios()"
-                                        class="btn btn-primary pull-left">VOLTAR</button>
-                                    <button mat-raised-button (click)="irParaPagamento()"
-                                        class="btn btn-primary pull-right">PROSSEGUIR</button>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
+
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+            <div class="col-md-12">
+                <button mat-raised-button (click)="irParaSocios()" class="btn btn-primary pull-left">VOLTAR</button>
+                <button mat-raised-button (click)="irParaPagamento()"
+                    class="btn btn-primary pull-right">PROSSEGUIR</button>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>

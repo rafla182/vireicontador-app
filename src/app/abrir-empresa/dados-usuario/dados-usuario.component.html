@@ -56,9 +56,13 @@
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="CEP" type="text" [(ngModel)]="model.cliente.cep"
-                                            required (keydown.tab)="pegarCep()" mask="00000-000" 
+                                            required (keydown.tab)="pegarCep()" mask="00000-000"
                                             [ngModelOptions]="{standalone: true}">
                                     </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <button mat-mini-fab (click)="pegarCep()" class="btn btn-basic"><i
+                                            class="material-icons">search</i></button>
                                 </div>
 
                             </div>
@@ -151,12 +155,17 @@
                                 </div>
                             </div>
 
-                            <button mat-raised-button (click)="irParaEmpresa()"
-                                class="btn btn-primary pull-right">PROSSEGUIR</button>
-                            <div class="clearfix"></div>
+
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button mat-raised-button (click)="irParaEmpresa()"
+                    class="btn btn-primary pull-right">PROSSEGUIR</button>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>

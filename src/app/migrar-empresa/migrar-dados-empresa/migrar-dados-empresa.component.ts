@@ -101,6 +101,11 @@ export class MigrarDadosEmpresaComponent implements OnInit {
     pegarEmpresa() {
 
 
+        if(!this.model.empresa.cnpj)
+        {
+            this.toastr.error('CNPJ não preenchido.');
+        }
+
         if (this.model.empresa.cnpj) {
             this.loading = true;
 
