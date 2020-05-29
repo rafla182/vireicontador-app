@@ -88,7 +88,7 @@ export class PagamentoComponent implements OnInit {
         },
             error => {
                 this.loading = false;
-                this.toastr.error('Erro ao realizar a transação.');
+                this.toastr.error(error.forEach(e => this.toastr.error(e.message)));
             }
         );
     }
